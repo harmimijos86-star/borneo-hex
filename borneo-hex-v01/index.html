@@ -1,297 +1,2080 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="BORNEO HEX — Satu Vendor. Satu Penyelesaian. Event, canopy, site support, industrial sourcing, fabrication dan packaging di Bintulu, Samalaju dan kawasan sekitarnya." />
-  <meta name="theme-color" content="#102a43" />
-  <title>BORNEO HEX | Satu Vendor. Satu Penyelesaian.</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff7700">
+  <title>BORNEO HEX | Digital Marketplace & AR Preview</title>
+  
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Langkau ke kandungan</a>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <header class="site-header" id="top">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="BORNEO HEX home">
-        <span class="brand-mark" aria-hidden="true">BH</span>
-        <span class="brand-copy"><strong>BORNEO HEX</strong><small>Satu Vendor. Satu Penyelesaian.</small></span>
+  <style>
+    :root {
+      --primary-orange: #ff7700;
+      --deep-orange: #d95800;
+      --dark-ink: #111418;
+      --cream-bg: #faf4eb;
+      --comic-border: #111418;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--dark-ink);
+      overflow-x: hidden;
+    }
+
+    .font-comic {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 1.5px;
+    }
+
+    /* 20% Opacity Silhouette & Halftone Dot Background Pattern */
+    .bg-halftone-pattern {
+      background-color: var(--cream-bg);
+      background-image: 
+        radial-gradient(rgba(26, 32, 44, 0.12) 1.5px, transparent 1.5px),
+        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 15 L75 45 L105 50 L80 75 L85 105 L60 90 L35 105 L40 75 L15 50 L45 45 Z' fill='%23ff7700' fill-opacity='0.04'/%3E%3Cpath d='M10 110 L110 110 L100 80 L20 80 Z' fill='%23111418' fill-opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 24px 24px, 160px 160px;
+    }
+
+    /* Comic / Pop-Art Neo-Brutalist utility classes */
+    .comic-card {
+      background: #ffffff;
+      border: 3px solid var(--comic-border);
+      box-shadow: 4px 4px 0px #111418;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .comic-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 7px 7px 0px #111418;
+    }
+
+    .comic-btn {
+      border: 2.5px solid #111418;
+      box-shadow: 3px 3px 0px #111418;
+      transition: all 0.15s ease;
+    }
+    .comic-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px #111418;
+    }
+    .comic-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px #111418;
+    }
+
+    .comic-ribbon {
+      position: relative;
+      background: #ff512f;
+      color: #fff;
+      transform: rotate(-2deg);
+      box-shadow: 3px 3px 0px #111418;
+      border: 2px solid #111418;
+    }
+
+    /* Custom Toast Notification */
+    #toast {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    #toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+    #toast.hide {
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1ebd9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ff7700;
+      border-radius: 4px;
+      border: 2px solid #111418;
+    }
+  </style>
+</head>
+
+<body class="bg-halftone-pattern min-h-screen flex flex-col antialiased">
+
+  <!-- TOP BAR TICKER -->
+  <div class="bg-[#111418] text-[#ffdd55] text-xs font-bold py-2 border-b-2 border-black tracking-wide overflow-hidden whitespace-nowrap">
+    <div class="inline-flex animate-marquee gap-8 items-center px-4">
+      <span>🚀 BORNEO HEX: SEWAAN & JUALAN KANOPI BERKUALITI DI BINTULU & SEKITAR SARAWAK</span>
+      <span>•</span>
+      <span>🔥 LIVE AR PREVIEW: UJI SAIZ KANOPI DI HALAMAN ANDA TERUS DARI TELEFON</span>
+      <span>•</span>
+      <span>📞 WHATSAPP PANTAS: 014-812 8806</span>
+      <span>•</span>
+      <span>⛺ KANOPI PIRAMID, ARABIAN, PERABOT, AIR COOLER & PA SYSTEM TERSEDIA</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-4 border-black px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Logo Branding with Comic Style -->
+      <a href="#" class="flex items-center gap-2 group">
+        <div class="w-11 h-11 bg-amber-400 border-2 border-black rounded-lg flex items-center justify-center font-comic text-2xl text-black shadow-[3px_3px_0px_#111] group-hover:rotate-6 transition-transform">
+          BH
+        </div>
+        <div>
+          <div class="font-comic text-2xl sm:text-3xl leading-none text-black flex items-center gap-1">
+            BORNEO <span class="text-[#ff7700] drop-shadow-[1px_1px_0px_#000]">HEX</span>
+          </div>
+          <span class="text-[10px] sm:text-xs font-black tracking-wider text-slate-500 uppercase">Event Logistics · Bintulu</span>
+        </div>
       </a>
 
-      <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
-      <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
-        <a href="#services">Servis</a>
-        <a href="#packages">Site Packages</a>
-        <a href="#builder">Package Builder</a>
-        <a href="#industrial">Industrial</a>
-        <a href="#contact">Hubungi</a>
-        <a class="btn btn-sm btn-primary" href="#rfq">Minta Quotation</a>
-      </nav>
+      <!-- Quick Action Navigation -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- AR Preview Trigger Button -->
+        <button onclick="openARModal()" class="comic-btn bg-[#00e1d9] hover:bg-[#00c9c2] text-black text-xs sm:text-sm font-extrabold px-3 sm:px-4 py-2 rounded-xl flex items-center gap-1.5">
+          <i data-lucide="scan" class="w-4 h-4 animate-pulse"></i>
+          <span class="hidden md:inline">AR Visualizer</span>
+          <span class="md:hidden">AR</span>
+        </button>
+
+        <!-- Internal Reference Tools: Copy Price List & Copy WA Reply & Folder Info -->
+        <button onclick="copyPriceList()" class="comic-btn bg-slate-100 hover:bg-slate-200 text-black text-xs font-bold px-2.5 py-2 rounded-xl hidden lg:flex items-center gap-1.5" title="Salin Senarai Harga">
+          <i data-lucide="clipboard-list" class="w-4 h-4 text-slate-700"></i>
+          <span>Salin Harga</span>
+        </button>
+
+        <button onclick="copyReplyTemplate()" class="comic-btn bg-amber-200 hover:bg-amber-300 text-black text-xs font-bold px-2.5 py-2 rounded-xl hidden lg:flex items-center gap-1.5" title="Salin Jawapan Pantas WhatsApp">
+          <i data-lucide="message-square-Plus" class="w-4 h-4 text-slate-800"></i>
+          <span>Salin Jawapan WA</span>
+        </button>
+
+        <button onclick="openFolderGuideModal()" class="comic-btn bg-white hover:bg-slate-100 text-black text-xs font-bold px-2.5 py-2 rounded-xl flex items-center gap-1" title="Panduan Folder Gambar Web">
+          <i data-lucide="folder-up" class="w-4 h-4 text-orange-600"></i>
+          <span class="hidden sm:inline">Folder Gambar</span>
+        </button>
+
+        <!-- Cart / Quotation Trigger Button with Badge -->
+        <button onclick="toggleCartDrawer(true)" class="comic-btn bg-[#ff7700] hover:bg-[#ff8800] text-black font-extrabold px-3.5 py-2 rounded-xl flex items-center gap-2 relative">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span class="hidden sm:inline">Pilihan</span>
+          <span id="headerCartCount" class="bg-black text-white text-xs font-black rounded-full h-5 w-5 flex items-center justify-center border border-white">0</span>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">BINTULU • SAMALAJU • SARAWAK</span>
-          <h1>Satu vendor untuk <span>event, tapak projek & keperluan industri.</span></h1>
-          <p class="lead">BORNEO HEX menyatukan canopy & event equipment, temporary site support, industrial sourcing, light fabrication dan packaging dalam satu saluran kerja yang lebih mudah.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#rfq">Dapatkan Sebut Harga</a>
-            <button class="btn btn-ghost" id="heroWhatsApp" type="button">WhatsApp BORNEO HEX</button>
-          </div>
-          <div class="hero-points" aria-label="Kelebihan BORNEO HEX">
-            <span>✓ Local support</span><span>✓ Flexible package</span><span>✓ One mobilisation</span>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="Ringkasan solusi BORNEO HEX">
-          <div class="visual-card visual-main">
-            <span class="visual-kicker">SITE READY</span>
-            <strong>Temporary Site Support</strong>
-            <p>Welfare • Field Office • Shutdown Support</p>
-          </div>
-          <div class="visual-card visual-event"><span>EVENT</span><strong>Canopy & Equipment</strong></div>
-          <div class="visual-card visual-industrial"><span>INDUSTRIAL</span><strong>Sourcing & MRO</strong></div>
-          <div class="hex-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
+  <!-- INTERNAL STAFF REFERENCE BAR -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-4 w-full">
+    <div class="bg-[#fff0dc] border-2 border-black rounded-xl px-4 py-2.5 shadow-[3px_3px_0px_#111418] flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-xs font-black text-black">
+        <span class="bg-black text-amber-400 px-2 py-0.5 rounded text-[10px]">RUJUKAN DALAMAN</span>
+        <span>BUKAN SEBUT HARGA MUKTAMAD — Harga & stok perlu disahkan sebelum tempahan.</span>
       </div>
-    </section>
-
-    <section class="trust-strip">
-      <div class="container trust-grid">
-        <div><strong>01</strong><span>Beritahu requirement</span></div>
-        <div><strong>02</strong><span>Kami cadangkan solution</span></div>
-        <div><strong>03</strong><span>Quotation & scheduling</span></div>
-        <div><strong>04</strong><span>Mobilise & support</span></div>
+      <div class="flex items-center gap-2">
+        <button onclick="copyPriceList()" class="bg-black text-white hover:bg-neutral-800 text-[11px] font-extrabold px-3 py-1.5 rounded-lg border border-black flex items-center gap-1">
+          <i data-lucide="copy" class="w-3 h-3"></i> Salin Senarai Harga
+        </button>
+        <button onclick="copyReplyTemplate()" class="bg-[#ff7700] text-black hover:bg-orange-400 text-[11px] font-extrabold px-3 py-1.5 rounded-lg border border-black flex items-center gap-1">
+          <i data-lucide="message-circle" class="w-3 h-3"></i> Salin Jawapan WhatsApp
+        </button>
       </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">APA YANG ANDA PERLUKAN?</span>
-          <h2>Mulakan dengan masalah. Kami susun penyelesaiannya.</h2>
-          <p>Tak perlu koordinasi terlalu banyak vendor untuk perkara yang boleh disatukan.</p>
-        </div>
-
-        <div class="service-grid">
-          <article class="service-card">
-            <span class="service-no">01</span><h3>Event & Canopy</h3>
-            <p>Canopy, meja, kerusi, fan, lighting dan setup asas untuk event.</p>
-            <a href="#event">Lihat servis →</a>
-          </article>
-          <article class="service-card featured">
-            <span class="service-no">02</span><h3>Site Support</h3>
-            <p>Worker welfare station, contractor field office dan shutdown support.</p>
-            <a href="#packages">Lihat package →</a>
-          </article>
-          <article class="service-card">
-            <span class="service-no">03</span><h3>Industrial Supply</h3>
-            <p>RFQ & sourcing untuk MRO, consumables, fasteners, abrasive dan item industri.</p>
-            <a href="#industrial">Submit RFQ →</a>
-          </article>
-          <article class="service-card">
-            <span class="service-no">04</span><h3>Fabrication & Packaging</h3>
-            <p>Light fabrication, rack, trolley, cage, crating dan packing solution.</p>
-            <a href="#industrial">Lihat solusi →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-dark" id="packages">
-      <div class="container">
-        <div class="section-head inverse">
-          <span class="eyebrow">BORNEO HEX SITE SUPPORT</span>
-          <h2>Tiga package untuk masuk tapak dengan lebih tersusun.</h2>
-          <p>Package boleh disesuaikan mengikut jumlah pekerja, tempoh projek dan requirement site.</p>
-        </div>
-
-        <div class="package-grid">
-          <article class="package-card">
-            <div class="package-top"><span>BH-01</span><b>ENTRY</b></div>
-            <h3>Worker Welfare Station</h3>
-            <p>Temporary rest & welfare area untuk project crew dan maintenance team.</p>
-            <ul><li>Temporary shelter</li><li>Tables & chairs</li><li>Industrial fan</li><li>Lighting</li><li>Water & waste corner</li><li>Basic signage</li></ul>
-            <button class="btn btn-outline package-select" data-package="BH-01 Worker Welfare Station">Pilih BH-01</button>
-          </article>
-
-          <article class="package-card popular">
-            <div class="package-top"><span>BH-02</span><b>POPULAR</b></div>
-            <h3>Contractor Field Office</h3>
-            <p>Temporary coordination space untuk site supervisor, QA/QC dan safety team.</p>
-            <ul><li>Covered workspace</li><li>Work tables & chairs</li><li>Lighting & ventilation</li><li>Whiteboard</li><li>Document area</li><li>Power access</li></ul>
-            <button class="btn btn-primary package-select" data-package="BH-02 Contractor Field Office">Pilih BH-02</button>
-          </article>
-
-          <article class="package-card">
-            <div class="package-top"><span>BH-03</span><b>PROJECT</b></div>
-            <h3>Shutdown Support Station</h3>
-            <p>Multi-facility setup untuk shutdown, turnaround dan maintenance project.</p>
-            <ul><li>Multiple shelters</li><li>Crew seating</li><li>Industrial fan</li><li>Lighting</li><li>Safety signage</li><li>Equipment holding</li></ul>
-            <button class="btn btn-outline package-select" data-package="BH-03 Shutdown Support Station">Pilih BH-03</button>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="builder">
-      <div class="container builder-grid">
-        <div>
-          <div class="section-head left">
-            <span class="eyebrow">SITE PACKAGE BUILDER</span>
-            <h2>Bagi kami 5 maklumat. Kami cadangkan setup awal.</h2>
-            <p>Ini anggaran konfigurasi untuk membantu RFQ — bukan final engineering/site assessment.</p>
-          </div>
-          <form class="builder-form" id="packageBuilder">
-            <label>Lokasi
-              <select id="builderLocation" required>
-                <option value="Bintulu">Bintulu</option><option value="Samalaju">Samalaju</option><option value="Kidurong">Kidurong</option><option value="Sebauh">Sebauh</option><option value="Lain-lain">Lain-lain</option>
-              </select>
-            </label>
-            <label>Jenis projek
-              <select id="builderProject" required>
-                <option value="Maintenance">Maintenance</option><option value="Shutdown">Shutdown / Turnaround</option><option value="Construction">Construction</option><option value="Temporary Site">Temporary Site</option><option value="Event">Event</option>
-              </select>
-            </label>
-            <label>Jumlah pekerja
-              <select id="builderWorkers" required>
-                <option value="10">10</option><option value="20">20</option><option value="30" selected>30</option><option value="50">50</option><option value="100">100+</option>
-              </select>
-            </label>
-            <label>Tempoh
-              <select id="builderDuration" required>
-                <option value="7 hari">7 hari</option><option value="14 hari">14 hari</option><option value="30 hari" selected>30 hari</option><option value="3 bulan">3 bulan</option><option value="Custom">Custom</option>
-              </select>
-            </label>
-            <fieldset>
-              <legend>Tambahan diperlukan</legend>
-              <label class="check"><input type="checkbox" value="Industrial fan" checked> Industrial fan</label>
-              <label class="check"><input type="checkbox" value="Lighting" checked> Lighting</label>
-              <label class="check"><input type="checkbox" value="Safety station"> Safety station</label>
-              <label class="check"><input type="checkbox" value="Equipment storage"> Equipment storage</label>
-              <label class="check"><input type="checkbox" value="Barricade"> Barricade</label>
-              <label class="check"><input type="checkbox" value="Custom fabrication"> Custom fabrication</label>
-            </fieldset>
-            <button class="btn btn-primary" type="submit">Cadangkan Pakej Saya</button>
-          </form>
-        </div>
-
-        <aside class="recommendation" id="recommendation" aria-live="polite">
-          <span class="eyebrow">CADANGAN AWAL</span>
-          <h3>BH-01 Extended Welfare Station</h3>
-          <p class="recommend-meta">30 pekerja • 30 hari • Bintulu</p>
-          <div class="recommend-list"><span>2 × temporary shelters</span><span>30 × chairs</span><span>4 × tables</span><span>2 × industrial fans</span><span>Lighting</span><span>Water & waste station</span></div>
-          <button class="btn btn-dark" id="useRecommendation" type="button">Masukkan ke RFQ</button>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="event">
-      <div class="container split">
-        <div>
-          <span class="eyebrow">CORE BUSINESS</span>
-          <h2>Event & Canopy Rental</h2>
-          <p class="lead small">Untuk majlis, program komuniti, corporate event dan activation — dengan setup yang fleksibel mengikut skala.</p>
-          <div class="tag-list"><span>Arabian Canopy</span><span>Pop-up Canopy</span><span>Tables</span><span>Chairs</span><span>Fans</span><span>Lighting</span></div>
-          <a class="btn btn-dark" href="#rfq" data-service-link="Event & Canopy">Tempah untuk Event</a>
-        </div>
-        <div class="metric-panel">
-          <span>ONE POINT OF CONTACT</span>
-          <strong>Kurangkan coordination. Fokus pada kerja utama.</strong>
-          <p>Dari event sampai temporary project setup, BORNEO HEX membantu satukan requirement yang boleh digabungkan dalam satu quotation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="industrial">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">INDUSTRIAL SOLUTIONS</span>
-          <h2>Tak jumpa item atau perlukan custom solution?</h2>
-          <p>Hantar requirement. Kami bantu source, quote dan arrange solution mengikut skop yang sesuai.</p>
-        </div>
-        <div class="industrial-grid">
-          <article><span>01</span><h3>Industrial Sourcing</h3><p>Mechanical, electrical, welding, abrasive, fasteners, consumables dan safety item.</p><button class="text-btn" data-service-link="Industrial Supply">Submit RFQ →</button></article>
-          <article><span>02</span><h3>Light Fabrication</h3><p>Rack, trolley, cage, barrier, work table, signage frame dan non-critical custom fabrication.</p><button class="text-btn" data-service-link="Light Fabrication">Request Fabrication →</button></article>
-          <article><span>03</span><h3>Packaging & Crating</h3><p>Custom crate, pallet, equipment skid, wrapping, strapping dan onsite packing assessment.</p><button class="text-btn" data-service-link="Packaging & Crating">Request Assessment →</button></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section rapid">
-      <div class="container rapid-wrap">
-        <div><span class="eyebrow">URGENT REQUIREMENT?</span><h2>Project bermula tak lama lagi?</h2><p>Beritahu lokasi, manpower, tempoh dan apa yang diperlukan. Kami akan susun scope awal untuk quotation.</p></div>
-        <button class="btn btn-primary" id="urgentWhatsApp" type="button">WhatsApp Requirement</button>
-      </div>
-    </section>
-
-    <section class="section section-dark" id="rfq">
-      <div class="container rfq-grid">
-        <div>
-          <span class="eyebrow">REQUEST FOR QUOTATION</span>
-          <h2>Beritahu requirement anda.</h2>
-          <p class="lead small">Lebih lengkap maklumat, lebih cepat kami boleh susun quotation yang relevan.</p>
-          <div class="rfq-note"><strong>Tip:</strong> Untuk industrial item, masukkan brand/specification/size jika ada. Upload dokumen akan ditambah dalam release seterusnya.</div>
-        </div>
-
-        <form class="rfq-form" id="rfqForm" novalidate>
-          <div class="form-row">
-            <label>Nama syarikat *<input type="text" id="companyName" name="companyName" required></label>
-            <label>Contact person *<input type="text" id="contactName" name="contactName" required></label>
-          </div>
-          <div class="form-row">
-            <label>WhatsApp / Telefon *<input type="tel" id="phone" name="phone" required placeholder="01X-XXXXXXX"></label>
-            <label>Email<input type="email" id="email" name="email" placeholder="name@company.com"></label>
-          </div>
-          <div class="form-row">
-            <label>Lokasi projek *<input type="text" id="projectLocation" name="projectLocation" required placeholder="Contoh: Samalaju"></label>
-            <label>Tarikh diperlukan<input type="date" id="requiredDate" name="requiredDate"></label>
-          </div>
-          <div class="form-row">
-            <label>Servis *
-              <select id="serviceType" name="serviceType" required>
-                <option value="">Pilih servis</option><option>Site Support</option><option>Event & Canopy</option><option>Industrial Supply</option><option>Light Fabrication</option><option>Packaging & Crating</option>
-              </select>
-            </label>
-            <label>Package
-              <select id="packageType" name="packageType"><option value="">Belum pasti</option><option>BH-01 Worker Welfare Station</option><option>BH-02 Contractor Field Office</option><option>BH-03 Shutdown Support Station</option><option>Custom</option></select>
-            </label>
-          </div>
-          <label>Requirement *<textarea id="message" name="message" rows="5" required placeholder="Contoh: 30 pekerja, 30 hari, perlu 2 canopy, industrial fan dan lighting..."></textarea></label>
-          <label class="honeypot" aria-hidden="true">Website<input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></label>
-          <label class="consent"><input type="checkbox" id="consent" required> Saya bersetuju maklumat ini digunakan untuk tujuan quotation dan follow-up BORNEO HEX.</label>
-          <div class="form-actions"><button class="btn btn-primary" type="submit">Hantar RFQ</button><span class="form-status" id="formStatus" role="status"></span></div>
-        </form>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container contact-card">
-        <div><span class="eyebrow">BORNEO HEX</span><h2>Satu Vendor. Satu Penyelesaian.</h2><p>Event • Site Support • Industrial Supply • Fabrication • Packaging</p></div>
-        <div class="contact-actions"><a class="btn btn-dark" href="#rfq">Request Quote</a><button class="btn btn-outline-dark" id="footerWhatsApp" type="button">WhatsApp</button></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div><strong>BORNEO HEX</strong><p>Satu Vendor. Satu Penyelesaian.</p></div>
-      <div><b>Coverage</b><span>Bintulu • Samalaju • Kidurong • Sebauh</span></div>
-      <div><b>Services</b><span>Event • Site Support • Industrial</span></div>
     </div>
-    <div class="container footer-bottom">© <span id="year"></span> BORNEO HEX. All rights reserved.</div>
-  </footer>
-
-  <div class="mobile-cta" aria-label="Tindakan pantas">
-    <button id="mobileWhatsApp" type="button">WhatsApp</button><a href="#rfq">Request Quote</a>
   </div>
 
-  <script type="module" src="./js/app.js"></script>
+  <!-- COMIC POP-ART HERO BANNER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-4 w-full">
+    <div class="relative bg-gradient-to-r from-amber-400 via-orange-400 to-[#ff5722] border-4 border-black rounded-2xl p-6 sm:p-10 shadow-[8px_8px_0px_#111418] overflow-hidden">
+      
+      <!-- Halftone pattern overlay inside hero -->
+      <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#000 2px, transparent 2px); background-size: 16px 16px;"></div>
+      
+      <!-- Big Decorative Comic Accent Word -->
+      <div class="absolute -right-4 -bottom-6 font-comic text-8xl sm:text-9xl text-black/10 select-none pointer-events-none uppercase">
+        EVENT!
+      </div>
+
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-block comic-ribbon px-3.5 py-1 text-xs font-black uppercase tracking-wider mb-3 rounded-md">
+          ⭐ Pasaran Kanopi & Kelengkapan Majlis
+        </div>
+        
+        <h1 class="font-comic text-4xl sm:text-6xl text-white drop-shadow-[3px_3px_0px_#111418] leading-[1.05] mb-3">
+          SEMAK HARGA, PREVIEW AR & TEMPAH CEPAT!
+        </h1>
+        
+        <p class="text-black font-bold text-sm sm:text-base leading-relaxed bg-white/90 p-3 rounded-xl border-2 border-black shadow-[3px_3px_0px_#111418] inline-block mb-4">
+          Penyelesaian lengkap sewaan kanopi kenduri, meja banquet, khemah komersial, mist fan dan sistem audio di Bintulu. Uji dimensi terus di tapak dengan kamera AR!
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="#catalog" class="comic-btn bg-black text-white hover:bg-neutral-800 text-sm font-extrabold px-5 py-2.5 rounded-xl flex items-center gap-2">
+            <span>Buka Katalog Digital</span>
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <button onclick="openARModal()" class="comic-btn bg-white text-black hover:bg-amber-100 text-sm font-extrabold px-5 py-2.5 rounded-xl flex items-center gap-2">
+            <i data-lucide="camera" class="w-4 h-4 text-orange-600"></i>
+            <span>Simulasi AR Tapak</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETPLACE CONTROLS (SEARCH, FILTERS, VIEW MODES) -->
+  <main id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
+    
+    <!-- Filter and Search Bar -->
+    <div class="bg-white border-3 border-black p-4 rounded-2xl shadow-[5px_5px_0px_#111418] mb-8 space-y-4">
+      
+      <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+        <!-- Search Field -->
+        <div class="relative flex-1">
+          <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            oninput="handleSearch()"
+            placeholder="Cari kanopi 20x20, kerusi banquet, PA system, kipas..."
+            class="w-full pl-11 pr-4 py-2.5 rounded-xl border-2 border-black font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-amber-50/40"
+          >
+        </div>
+
+        <!-- Mode Dropdown (Sewa/Beli) -->
+        <div class="flex items-center gap-2">
+          <label class="text-xs font-black uppercase text-slate-700 whitespace-nowrap">Tawaran:</label>
+          <select 
+            id="dealMode" 
+            onchange="renderCatalog()"
+            class="py-2.5 px-3 rounded-xl border-2 border-black font-bold text-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer shadow-[2px_2px_0px_#111]"
+          >
+            <option value="all">Semua (Sewa & Beli)</option>
+            <option value="rent">Sewa Sahaja</option>
+            <option value="sale">Jualan / Beli Sahaja</option>
+          </select>
+
+          <!-- Sorting -->
+          <select 
+            id="sortFilter" 
+            onchange="renderCatalog()"
+            class="py-2.5 px-3 rounded-xl border-2 border-black font-bold text-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer shadow-[2px_2px_0px_#111]"
+          >
+            <option value="default">Paling Popular</option>
+            <option value="price-asc">Harga: Rendah ke Tinggi</option>
+            <option value="price-desc">Harga: Tinggi ke Rendah</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar text-xs sm:text-sm font-black">
+        <button onclick="setCategory('all')" data-cat="all" class="cat-pill comic-btn bg-black text-white px-4 py-2 rounded-xl whitespace-nowrap">Semua Item</button>
+        <button onclick="setCategory('canopy')" data-cat="canopy" class="cat-pill comic-btn bg-white text-black px-4 py-2 rounded-xl whitespace-nowrap flex items-center gap-1.5">
+          <span>⛺</span> Kanopi & Khemah
+        </button>
+        <button onclick="setCategory('furniture')" data-cat="furniture" class="cat-pill comic-btn bg-white text-black px-4 py-2 rounded-xl whitespace-nowrap flex items-center gap-1.5">
+          <span>🪑</span> Kerusi & Meja
+        </button>
+        <button onclick="setCategory('electrical')" data-cat="electrical" class="cat-pill comic-btn bg-white text-black px-4 py-2 rounded-xl whitespace-nowrap flex items-center gap-1.5">
+          <span>🌀</span> Kipas & Penyejuk
+        </button>
+        <button onclick="setCategory('audio')" data-cat="audio" class="cat-pill comic-btn bg-white text-black px-4 py-2 rounded-xl whitespace-nowrap flex items-center gap-1.5">
+          <span>🔊</span> PA Audio & Lampu
+        </button>
+      </div>
+
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyCatalogState" class="hidden text-center py-16 bg-white border-3 border-black rounded-2xl shadow-[6px_6px_0px_#111]">
+      <div class="text-5xl mb-3">🔍</div>
+      <h3 class="font-comic text-2xl text-black">TIADA PRODUK DIJUMPAI</h3>
+      <p class="text-sm text-gray-600 max-w-sm mx-auto mt-1 mb-4">Cuba kata kunci lain atau pilih kategori "Semua Item" untuk melihat senarai penuh.</p>
+      <button onclick="resetFilters()" class="comic-btn bg-amber-400 text-black px-5 py-2 font-black rounded-xl text-xs uppercase">Reset Carian</button>
+    </div>
+
+  </main>
+
+  <!-- QUICK PRODUCT DETAIL MODAL -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border-4 border-black rounded-2xl max-w-lg w-full p-6 shadow-[8px_8px_0px_#111] relative">
+      <button onclick="closeQuickView()" class="absolute right-4 top-4 bg-slate-100 hover:bg-red-400 border-2 border-black rounded-full p-1 text-black z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="quickViewContent"></div>
+    </div>
+  </div>
+
+  <!-- IMAGE FOLDER UPLOAD GUIDE & CUSTOM PHOTO MODAL -->
+  <div id="folderGuideModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border-4 border-black rounded-2xl max-w-2xl w-full p-6 shadow-[8px_8px_0px_#111] relative max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
+        <div class="flex items-center gap-2">
+          <div class="bg-amber-400 border-2 border-black p-1.5 rounded-lg">
+            <i data-lucide="folder-open" class="w-5 h-5 text-black"></i>
+          </div>
+          <div>
+            <h3 class="font-comic text-2xl text-black leading-none">STRUKTUR FOLDER GAMBAR WEB (./images/)</h3>
+            <p class="text-xs font-bold text-gray-600">Sistem ini memaparkan Grafik Produk Generik Tepat secara automatik atau memuatkan fail daripada folder <code class="bg-slate-100 px-1 rounded">./images/</code> jika diupload ke hosting.</p>
+          </div>
+        </div>
+        <button onclick="closeFolderGuideModal()" class="bg-slate-100 hover:bg-red-400 border-2 border-black rounded-lg p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto pr-2 space-y-3 text-xs flex-1">
+        <div class="bg-amber-50 border-2 border-black p-3 rounded-xl font-medium text-slate-800">
+          💡 <strong>Cara Guna Di Hosting / Server:</strong> Buat satu folder bernama <code class="font-black text-orange-700">images</code> bersebelahan fail <code class="font-black">index.html</code> ini, atau klik butang <strong>"Pilih Fail"</strong> di bawah untuk menguji gambar anda terus di pelayar!
+        </div>
+
+        <div id="folderFileList" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <!-- Populated dynamically with all 21 item filenames and instant local upload button -->
+        </div>
+      </div>
+
+      <div class="border-t-2 border-black pt-3 mt-4 flex justify-between items-center">
+        <button onclick="resetCustomImages()" class="text-xs font-bold text-red-600 hover:underline">Reset Gambar Tersuai</button>
+        <button onclick="closeFolderGuideModal()" class="comic-btn bg-black text-white text-xs font-black px-5 py-2 rounded-xl">Tutup Panduan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AR PREVIEW CAMERA / SIMULATION MODAL -->
+  <div id="arModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex-col items-center justify-center p-2 sm:p-4">
+    <div class="bg-white border-4 border-black rounded-2xl w-full max-w-4xl h-[92vh] sm:h-[88vh] flex flex-col shadow-[8px_8px_0px_#111] overflow-hidden relative">
+      
+      <!-- AR Top Header -->
+      <div class="bg-amber-400 border-b-3 border-black p-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="bg-black text-amber-300 p-1.5 rounded-lg border border-black">
+            <i data-lucide="scan" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="font-comic text-xl text-black leading-tight">BORNEO HEX · SIMULASI AR TAPAK</h2>
+            <p class="text-[11px] font-bold text-black/80">Anggarkan keluasan kanopi di halaman rumah atau tapak event anda</p>
+          </div>
+        </div>
+
+        <button onclick="closeARModal()" class="bg-white hover:bg-red-500 hover:text-white border-2 border-black rounded-xl p-1.5 font-bold transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- AR Viewport Canvas / Video -->
+      <div class="relative flex-1 bg-neutral-900 overflow-hidden flex items-center justify-center" id="arContainer">
+        <!-- Live Video Element -->
+        <video id="arVideo" autoplay playsinline muted class="absolute inset-0 w-full h-full object-cover hidden"></video>
+        
+        <!-- Fallback Yard Image (if camera blocked or not granted) -->
+        <img id="arFallbackImg" src="https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1200&q=80" alt="Halaman Acara" class="absolute inset-0 w-full h-full object-cover">
+        
+        <!-- Visual Grid Overlay to show scale perspective -->
+        <div class="absolute inset-0 pointer-events-none opacity-25" style="background-image: linear-gradient(#00e1d9 1px, transparent 1px), linear-gradient(90deg, #00e1d9 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+        <!-- Draggable & Scalable AR Canopy Object -->
+        <div id="arCanopyObject" class="absolute cursor-move select-none touch-none transition-transform duration-75 flex flex-col items-center justify-center text-center" style="transform: translate(0px, 0px) scale(1) rotate(0deg); width: 280px;">
+          
+          <!-- Size Label Badge -->
+          <div id="arSizeTag" class="bg-black text-amber-400 border-2 border-white text-xs font-black px-2.5 py-1 rounded-md mb-2 shadow-md">
+            Kanopi Piramid 20 × 20 Kaki (6m x 6m)
+          </div>
+
+          <!-- Dynamic SVG Vector Canopy Preview Overlay -->
+          <div id="arGraphicWrap" class="w-full filter drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]">
+            <svg viewBox="0 0 300 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <!-- Canopy Roof Geometry -->
+              <polygon points="150,15 20,95 280,95" fill="#ff7700" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+              <polygon points="150,15 150,95 280,95" fill="#e65100" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+              <polygon points="150,15 150,95 20,95" fill="#ff9800" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+              <!-- Scallop Valance -->
+              <path d="M20,95 Q52,110 85,95 Q117,110 150,95 Q182,110 215,95 Q247,110 280,95 L280,110 Q247,125 215,110 Q182,125 150,110 Q117,125 85,110 Q52,125 20,110 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+              <!-- Canopy 4 Metal Legs -->
+              <line x1="30" y1="110" x2="30" y2="230" stroke="#333" stroke-width="7" stroke-linecap="round"/>
+              <line x1="270" y1="110" x2="270" y2="230" stroke="#333" stroke-width="7" stroke-linecap="round"/>
+              <line x1="90" y1="110" x2="90" y2="215" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+              <line x1="210" y1="110" x2="210" y2="215" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+              <!-- Ground Shadow simulation -->
+              <ellipse cx="150" cy="225" rx="130" ry="12" fill="#000000" fill-opacity="0.25"/>
+            </svg>
+          </div>
+
+          <p class="text-[10px] bg-white/90 text-black font-extrabold px-2 py-0.5 rounded border border-black mt-1">
+            👆 Sentuh & Seret Kanopi
+          </p>
+        </div>
+
+        <!-- Camera Status Indicator Badge -->
+        <div id="camStatus" class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-lg border border-white/30 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <span id="camStatusText">Kamera Aktif</span>
+        </div>
+
+        <!-- Toggle Camera Switch -->
+        <button onclick="toggleCameraSource()" class="absolute top-3 right-3 bg-white/90 hover:bg-white text-black text-xs font-black px-3 py-1.5 rounded-lg border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Tukar Latar / Kamera</span>
+        </button>
+      </div>
+
+      <!-- AR Control Bar Bottom -->
+      <div class="bg-white border-t-3 border-black p-3.5 sm:p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Select Canopy Model -->
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <span class="text-xs font-black uppercase whitespace-nowrap">Model:</span>
+          <select id="arModelSelector" onchange="changeARModel(this.value)" class="w-full md:w-auto py-1.5 px-2.5 border-2 border-black rounded-lg text-xs font-extrabold bg-amber-50">
+            <option value="6x6">Kanopi 20' x 20' (6m x 6m)</option>
+            <option value="3x6">Kanopi 10' x 20' (3m x 6m)</option>
+            <option value="3x3">Kanopi 10' x 10' (3m x 3m)</option>
+            <option value="arabian">Arabian High-Peak Canopy</option>
+          </select>
+        </div>
+
+        <!-- Sliders: Scale & Rotate -->
+        <div class="flex items-center gap-4 w-full md:w-auto justify-center">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-black">Saiz/Jarak:</span>
+            <input type="range" id="arScaleSlider" min="0.5" max="2.0" step="0.05" value="1.0" oninput="updateARTransform()" class="w-24 sm:w-32 accent-orange-500">
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-black">Putaran:</span>
+            <input type="range" id="arRotateSlider" min="-180" max="180" step="5" value="0" oninput="updateARTransform()" class="w-20 sm:w-28 accent-orange-500">
+          </div>
+        </div>
+
+        <!-- Action Add to Quotation directly from AR -->
+        <button onclick="addCurrentARToCart()" class="comic-btn bg-[#ff7700] hover:bg-orange-500 text-black text-xs font-black px-4 py-2 rounded-xl flex items-center justify-center gap-2 w-full md:w-auto">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          <span>Tambah Model Ini Ke Senarai</span>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE-OVER QUOTATION CART DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
+    <!-- Backdrop overlay -->
+    <div id="cartBackdrop" onclick="toggleCartDrawer(false)" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-auto hidden"></div>
+
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-6">
+      <div id="cartPanel" class="w-screen max-w-md bg-white border-l-4 border-black p-6 shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 pointer-events-auto">
+        
+        <!-- Drawer Header -->
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b-2 border-black">
+            <div class="flex items-center gap-2">
+              <div class="w-9 h-9 rounded-lg bg-orange-400 border-2 border-black flex items-center justify-center">
+                <i data-lucide="clipboard-list" class="w-5 h-5 text-black"></i>
+              </div>
+              <h2 class="font-comic text-2xl text-black">SENARAI TEMPAHAN</h2>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="p-1.5 border-2 border-black rounded-lg hover:bg-slate-100">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <!-- Item list scroll container -->
+          <div id="cartItemsList" class="mt-4 space-y-3 max-h-[38vh] overflow-y-auto pr-1">
+            <!-- Rendered dynamic items -->
+          </div>
+
+          <div id="emptyCartView" class="py-12 text-center">
+            <div class="text-4xl mb-2">🛒</div>
+            <p class="font-bold text-sm text-slate-800">Senarai pilihan anda masih kosong.</p>
+            <p class="text-xs text-slate-500 mt-1">Pilih kanopi atau peralatan daripada katalog untuk memulakan semakan sebut harga.</p>
+          </div>
+        </div>
+
+        <!-- Form & Checkout Section -->
+        <div class="border-t-2 border-black pt-4 mt-auto">
+          
+          <!-- Subtotal display -->
+          <div class="bg-amber-100 border-2 border-black p-3 rounded-xl mb-3 flex items-center justify-between">
+            <span class="text-xs font-black uppercase text-slate-700">Anggaran Subtotal:</span>
+            <span id="cartSubtotal" class="font-comic text-2xl text-black">RM0.00</span>
+          </div>
+
+          <p class="text-[10px] text-gray-500 mb-3 leading-tight font-medium">
+            *Nota: Subtotal tidak termasuk kos penghantaran/pemasangan di luar kawasan. Item tanpa tanda harga (Tanya Harga) akan disahkan melalui WhatsApp.
+          </p>
+
+          <!-- Customer Event Info Fields -->
+          <div class="space-y-2 mb-4 text-xs font-bold">
+            <div>
+              <label class="block text-slate-700 mb-0.5">Nama Penuh Pelanggan:</label>
+              <input type="text" id="custName" placeholder="Contoh: En. Razak / Pn. Aisyah" class="w-full p-2 border-2 border-black rounded-lg text-xs bg-slate-50">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-slate-700 mb-0.5">Tarikh Acara:</label>
+                <input type="date" id="custDate" class="w-full p-2 border-2 border-black rounded-lg text-xs bg-slate-50">
+              </div>
+              <div>
+                <label class="block text-slate-700 mb-0.5">Tempoh (Hari):</label>
+                <input type="number" id="custDuration" value="3" min="1" class="w-full p-2 border-2 border-black rounded-lg text-xs bg-slate-50">
+              </div>
+            </div>
+            <div>
+              <label class="block text-slate-700 mb-0.5">Lokasi Acara (Bintulu & Sekitar):</label>
+              <input type="text" id="custLocation" placeholder="Contoh: Kidurong, Tanjung Batu, Jepak..." class="w-full p-2 border-2 border-black rounded-lg text-xs bg-slate-50">
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="space-y-2">
+            <button onclick="submitToWhatsApp()" class="comic-btn w-full bg-[#25D366] hover:bg-[#20ba5a] text-black font-extrabold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-[3px_3px_0px_#111]">
+              <i data-lucide="message-circle" class="w-5 h-5 text-black fill-current"></i>
+              <span>Hantar Semakan Ke WhatsApp ↗</span>
+            </button>
+            
+            <div class="flex gap-2">
+              <button onclick="copyQuotationSummary()" class="comic-btn w-1/2 bg-slate-100 hover:bg-slate-200 text-black font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Salin Teks</span>
+              </button>
+              <button onclick="clearFullCart()" class="comic-btn w-1/2 bg-red-100 hover:bg-red-200 text-red-800 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <span>Kosongkan</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING QUICK CART BUTTON ON MOBILE -->
+  <div class="fixed bottom-5 right-5 z-30 md:hidden">
+    <button onclick="toggleCartDrawer(true)" class="comic-btn bg-[#ff7700] text-black p-3.5 rounded-full shadow-[4px_4px_0px_#111] flex items-center justify-center relative">
+      <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+      <span id="floatingCartBadge" class="absolute -top-1 -right-1 bg-black text-amber-300 text-xs font-black rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">0</span>
+    </button>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="hide fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#111418] text-white border-2 border-amber-400 py-2.5 px-5 rounded-xl shadow-[4px_4px_0px_#000] flex items-center gap-2.5 text-xs sm:text-sm font-extrabold">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-amber-400"></i>
+    <span id="toastMessage">Item ditambah ke senarai</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 bg-white border-t-4 border-black py-8 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-amber-400 border-2 border-black rounded-lg flex items-center justify-center font-comic text-xl text-black">
+          BH
+        </div>
+        <div>
+          <div class="font-comic text-xl text-black">BORNEO HEX EVENT EQUIPMENT</div>
+          <p class="text-xs font-bold text-gray-600">Bintulu, Sarawak · Hubungi WhatsApp: +60 14-812 8806</p>
+        </div>
+      </div>
+
+      <div class="text-xs text-center md:text-right font-medium text-gray-500">
+        <p>© <span id="currentYear"></span> BORNEO HEX. Hak Cipta Terpelihara.</p>
+        <p class="mt-1 font-bold text-slate-800">Kadar sewa standard 3 hari pemasangan & pembongkaran tertakluk kepada pengesahan tapak.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    // WhatsApp contact number
+    const WA_PHONE = "60148128806";
+
+    // Custom uploaded overrides in browser session
+    const customImageStore = {};
+
+    // High-Precision Generic Product Visual Generator (Matches exact tag name of all 21 items)
+    function getGenericItemVisualSVG(id) {
+      const visuals = {
+        // 1. Kanopi 3m x 3m (10x10ft Square Pyramid Canopy)
+        1: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0f2fe"/><stop offset="70%" stop-color="#f8fafc"/><stop offset="70%" stop-color="#e2e8f0"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+              </defs>
+              <rect width="400" height="280" fill="url(#bg1)"/>
+              <ellipse cx="200" cy="235" rx="95" ry="14" fill="rgba(0,0,0,0.18)"/>
+              <!-- Back legs -->
+              <line x1="145" y1="125" x2="145" y2="220" stroke="#475569" stroke-width="4"/>
+              <line x1="255" y1="125" x2="255" y2="220" stroke="#475569" stroke-width="4"/>
+              <!-- Pyramid Roof 3x3m Square -->
+              <polygon points="200,38 110,115 200,130" fill="#ffffff" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+              <polygon points="200,38 290,115 200,130" fill="#e2e8f0" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+              <!-- Valance with orange trim -->
+              <polygon points="110,115 200,130 200,144 110,129" fill="#ff7700" stroke="#1e293b" stroke-width="2.5"/>
+              <polygon points="200,130 290,115 290,129 200,144" fill="#d95800" stroke="#1e293b" stroke-width="2.5"/>
+              <!-- Front Legs -->
+              <line x1="115" y1="130" x2="115" y2="235" stroke="#1e293b" stroke-width="5"/>
+              <line x1="200" y1="144" x2="200" y2="242" stroke="#0f172a" stroke-width="5.5"/>
+              <line x1="285" y1="130" x2="285" y2="235" stroke="#1e293b" stroke-width="5"/>
+              <!-- Dimension Label -->
+              <rect x="130" y="14" width="140" height="22" rx="6" fill="#111418"/>
+              <text x="200" y="29" text-anchor="middle" fill="#ffdd55" font-family="sans-serif" font-size="11" font-weight="900">SAIZ: 3m × 3m (10'×10')</text>
+            </svg>`,
+
+        // 2. Kanopi 3m x 6m (10x20ft Rectangular Long Canopy)
+        2: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#e0f2fe"/><rect y="200" width="400" height="80" fill="#cbd5e1"/>
+              <ellipse cx="200" cy="236" rx="155" ry="15" fill="rgba(0,0,0,0.18)"/>
+              <!-- Back legs -->
+              <line x1="85" y1="120" x2="85" y2="215" stroke="#64748b" stroke-width="3.5"/>
+              <line x1="200" y1="120" x2="200" y2="215" stroke="#64748b" stroke-width="3.5"/>
+              <line x1="315" y1="120" x2="315" y2="215" stroke="#64748b" stroke-width="3.5"/>
+              <!-- Double-Peak / Ridge Rectangular Roof 3x6m -->
+              <polygon points="130,52 270,52 350,115 50,115" fill="#ffffff" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+              <polygon points="270,52 350,115 295,128 220,65" fill="#e2e8f0" stroke="#1e293b" stroke-width="2.5"/>
+              <!-- Long Rectangular Valance -->
+              <rect x="50" y="115" width="300" height="16" fill="#ff7700" stroke="#1e293b" stroke-width="2.5"/>
+              <!-- 3 Front Legs (Characteristic of 3m x 6m) -->
+              <line x1="56" y1="131" x2="56" y2="235" stroke="#1e293b" stroke-width="5"/>
+              <line x1="200" y1="131" x2="200" y2="238" stroke="#1e293b" stroke-width="5"/>
+              <line x1="344" y1="131" x2="344" y2="235" stroke="#1e293b" stroke-width="5"/>
+              <rect x="115" y="14" width="170" height="22" rx="6" fill="#111418"/>
+              <text x="200" y="29" text-anchor="middle" fill="#ffdd55" font-family="sans-serif" font-size="11" font-weight="900">MEMANJANG: 3m × 6m (10'×20')</text>
+            </svg>`,
+
+        // 3. Kanopi 6m x 6m (20x20ft Large Event Pyramid Canopy)
+        3: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#ffedd5"/><rect y="200" width="400" height="80" fill="#d6d3d1"/>
+              <ellipse cx="200" cy="238" rx="160" ry="18" fill="rgba(0,0,0,0.2)"/>
+              <!-- Back legs -->
+              <line x1="95" y1="130" x2="95" y2="220" stroke="#57534e" stroke-width="4.5"/>
+              <line x1="305" y1="130" x2="305" y2="220" stroke="#57534e" stroke-width="4.5"/>
+              <!-- Wide 20x20 Pyramid Roof -->
+              <polygon points="200,32 45,118 200,136" fill="#ffffff" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <polygon points="200,32 355,118 200,136" fill="#f1f5f9" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <!-- Striped Event Valance -->
+              <polygon points="45,118 200,136 200,152 45,134" fill="#ff7700" stroke="#111418" stroke-width="2.5"/>
+              <polygon points="200,136 355,118 355,134 200,152" fill="#ea580c" stroke="#111418" stroke-width="2.5"/>
+              <!-- Heavy Duty Steel Frame Legs -->
+              <line x1="52" y1="134" x2="52" y2="238" stroke="#111418" stroke-width="6"/>
+              <line x1="200" y1="152" x2="200" y2="246" stroke="#111418" stroke-width="6.5"/>
+              <line x1="348" y1="134" x2="348" y2="238" stroke="#111418" stroke-width="6"/>
+              <rect x="115" y="10" width="170" height="22" rx="6" fill="#111418"/>
+              <text x="200" y="25" text-anchor="middle" fill="#4ade80" font-family="sans-serif" font-size="11" font-weight="900">BESAR: 6m × 6m (20'×20')</text>
+            </svg>`,
+
+        // 4. Arabian Canopy (Curved High-Peak Roof with Scalloped Valance)
+        4: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#fef3c7"/><rect y="200" width="400" height="80" fill="#d6d3d1"/>
+              <ellipse cx="200" cy="238" rx="150" ry="16" fill="rgba(0,0,0,0.2)"/>
+              <!-- High Peak Curved Arabian Cone -->
+              <path d="M200,18 Q165,85 55,120 L200,136 Z" fill="#ffffff" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <path d="M200,18 Q235,85 345,120 L200,136 Z" fill="#f1f5f9" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <!-- Finial Spire at top -->
+              <line x1="200" y1="6" x2="200" y2="20" stroke="#111418" stroke-width="3"/>
+              <circle cx="200" cy="8" r="4" fill="#ff7700" stroke="#111418" stroke-width="2"/>
+              <!-- Scalloped Luxury Valance -->
+              <path d="M55,120 L200,136 L345,120 L345,135 Q310,148 275,130 Q240,152 200,148 Q160,152 125,130 Q90,148 55,135 Z" fill="#ff7700" stroke="#111418" stroke-width="2.5"/>
+              <!-- Draped Corner Curtains -->
+              <path d="M58,135 L68,185 L52,235 L48,135 Z" fill="#fff7ed" stroke="#111418" stroke-width="2"/>
+              <path d="M342,135 L332,185 L348,235 L352,135 Z" fill="#fff7ed" stroke="#111418" stroke-width="2"/>
+              <line x1="55" y1="135" x2="55" y2="238" stroke="#111418" stroke-width="5"/>
+              <line x1="200" y1="148" x2="200" y2="244" stroke="#111418" stroke-width="5"/>
+              <line x1="345" y1="135" x2="345" y2="238" stroke="#111418" stroke-width="5"/>
+              <rect x="115" y="248" width="170" height="22" rx="6" fill="#111418"/>
+              <text x="200" y="263" text-anchor="middle" fill="#ffdd55" font-family="sans-serif" font-size="11" font-weight="900">ARABIAN HIGH-PEAK CANOPY</text>
+            </svg>`,
+
+        // 5. Gazebo 3m x 3m (Vented Double-Tier Gazebo Roof)
+        5: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="205" fill="#ecfdf5"/><rect y="205" width="400" height="75" fill="#cbd5e1"/>
+              <ellipse cx="200" cy="235" rx="105" ry="14" fill="rgba(0,0,0,0.16)"/>
+              <!-- Gazebo Main Roof -->
+              <polygon points="200,58 95,120 305,120" fill="#0f766e" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <!-- Top Wind Vent Tier (Distinctive Gazebo Feature) -->
+              <polygon points="200,32 155,62 245,62" fill="#14b8a6" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="95" y="120" width="210" height="12" fill="#115e59" stroke="#111418" stroke-width="2.5"/>
+              <!-- Sturdy Corner Posts with Gussets -->
+              <rect x="100" y="132" width="8" height="102" fill="#1e293b" stroke="#111418" stroke-width="2"/>
+              <rect x="292" y="132" width="8" height="102" fill="#1e293b" stroke="#111418" stroke-width="2"/>
+              <line x1="108" y1="150" x2="128" y2="132" stroke="#1e293b" stroke-width="4"/>
+              <line x1="292" y1="150" x2="272" y2="132" stroke="#1e293b" stroke-width="4"/>
+              <rect x="125" y="245" width="150" height="22" rx="6" fill="#111418"/>
+              <text x="200" y="260" text-anchor="middle" fill="#5eead4" font-family="sans-serif" font-size="11" font-weight="900">GAZEBO 3m × 3m</text>
+            </svg>`,
+
+        // 6. Pop-Up Tent 3m x 3m (Foldable Scissor Truss Frame Tent)
+        6: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="205" fill="#eff6ff"/><rect y="205" width="400" height="75" fill="#cbd5e1"/>
+              <ellipse cx="200" cy="235" rx="100" ry="12" fill="rgba(0,0,0,0.16)"/>
+              <!-- Blue Canvas Top -->
+              <polygon points="200,45 95,112 305,112" fill="#2563eb" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="95" y="112" width="210" height="15" fill="#1d4ed8" stroke="#111418" stroke-width="2.5"/>
+              <!-- Visible Scissor Truss X-Frame Bars (Pop-Up Tent signature) -->
+              <rect x="102" y="127" width="196" height="16" fill="#f8fafc" stroke="#111418" stroke-width="2"/>
+              <path d="M102,127 L135,143 M135,127 L102,143 M135,127 L168,143 M168,127 L135,143 M168,127 L200,143 M200,127 L168,143 M200,127 L232,143 M232,127 L200,143 M232,127 L265,143 M265,127 L232,143 M265,127 L298,143 M298,127 L265,143" stroke="#475569" stroke-width="2"/>
+              <!-- Telescopic Legs -->
+              <line x1="102" y1="127" x2="102" y2="235" stroke="#0f172a" stroke-width="5"/>
+              <line x1="298" y1="127" x2="298" y2="235" stroke="#0f172a" stroke-width="5"/>
+              <line x1="140" y1="143" x2="140" y2="220" stroke="#64748b" stroke-width="3.5"/>
+              <line x1="260" y1="143" x2="260" y2="220" stroke="#64748b" stroke-width="3.5"/>
+              <rect x="120" y="245" width="160" height="22" rx="6" fill="#111418"/>
+              <text x="200" y="260" text-anchor="middle" fill="#93c5fd" font-family="sans-serif" font-size="11" font-weight="900">POP-UP TENT LIPAT 3m×3m</text>
+            </svg>`,
+
+        // 7. Kerusi Plastik (Molded Stackable Event Plastic Chair)
+        7: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#f8fafc"/>
+              <ellipse cx="200" cy="242" rx="65" ry="12" fill="rgba(0,0,0,0.15)"/>
+              <!-- Back Legs -->
+              <line x1="168" y1="160" x2="155" y2="232" stroke="#1e3a8a" stroke-width="7" stroke-linecap="round"/>
+              <line x1="232" y1="160" x2="245" y2="232" stroke="#1e3a8a" stroke-width="7" stroke-linecap="round"/>
+              <!-- Molded Plastic Backrest with Ventilation Slots -->
+              <rect x="155" y="42" width="90" height="105" rx="18" fill="#2563eb" stroke="#111418" stroke-width="3.5"/>
+              <rect x="172" y="62" width="56" height="10" rx="5" fill="#f8fafc" stroke="#111418" stroke-width="2"/>
+              <rect x="172" y="82" width="56" height="10" rx="5" fill="#f8fafc" stroke="#111418" stroke-width="2"/>
+              <rect x="172" y="102" width="56" height="10" rx="5" fill="#f8fafc" stroke="#111418" stroke-width="2"/>
+              <!-- Seat Pan -->
+              <polygon points="150,145 250,145 265,168 135,168" fill="#3b82f6" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <!-- Front Legs -->
+              <line x1="145" y1="168" x2="140" y2="242" stroke="#1d4ed8" stroke-width="8" stroke-linecap="round"/>
+              <line x1="255" y1="168" x2="260" y2="242" stroke="#1d4ed8" stroke-width="8" stroke-linecap="round"/>
+            </svg>`,
+
+        // 8. Kerusi Banquet (Cushioned Formal Banquet Chair with Gold Frame)
+        8: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#fffbeb"/>
+              <ellipse cx="200" cy="244" rx="65" ry="12" fill="rgba(0,0,0,0.16)"/>
+              <!-- Crown Top Gold Frame & Backrest -->
+              <path d="M158,150 L158,58 Q200,25 242,58 L242,150" fill="none" stroke="#eab308" stroke-width="7"/>
+              <path d="M158,150 L158,58 Q200,25 242,58 L242,150" fill="none" stroke="#111418" stroke-width="2"/>
+              <!-- Plush Velvet Padded Back Cushion -->
+              <path d="M166,142 L166,65 Q200,38 234,65 L234,142 Z" fill="#991b1b" stroke="#111418" stroke-width="3"/>
+              <!-- Thick Padded Seat Cushion -->
+              <rect x="144" y="146" width="112" height="24" rx="8" fill="#b91c1c" stroke="#111418" stroke-width="3"/>
+              <!-- Gold Metal Legs & Crossbars -->
+              <line x1="154" y1="170" x2="148" y2="242" stroke="#ca8a04" stroke-width="6"/>
+              <line x1="246" y1="170" x2="252" y2="242" stroke="#ca8a04" stroke-width="6"/>
+              <line x1="166" y1="170" x2="162" y2="228" stroke="#a16207" stroke-width="5"/>
+              <line x1="234" y1="170" x2="238" y2="228" stroke="#a16207" stroke-width="5"/>
+              <line x1="151" y1="205" x2="249" y2="205" stroke="#ca8a04" stroke-width="4"/>
+            </svg>`,
+
+        // 9. Meja 2 x 6 kaki (Narrow 2ft x 6ft Rectangular Folding Table)
+        9: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#f8fafc"/>
+              <ellipse cx="200" cy="228" rx="145" ry="12" fill="rgba(0,0,0,0.14)"/>
+              <!-- Folding Steel Legs -->
+              <path d="M85,125 L85,222 M115,115 L115,205 M85,170 L115,155" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+              <path d="M285,115 L285,205 M315,125 L315,222 M285,155 L315,170" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+              <!-- Narrow 2x6ft Rectangular Tabletop -->
+              <polygon points="85,95 335,95 315,125 65,125" fill="#f1f5f9" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <polygon points="65,125 315,125 315,135 65,135" fill="#94a3b8" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <polygon points="315,125 335,95 335,105 315,135" fill="#64748b" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <text x="200" y="115" text-anchor="middle" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="900">2' × 6' KAKI</text>
+            </svg>`,
+
+        // 10. Meja 3 x 6 kaki (Medium Width 3ft x 6ft Rectangular Table)
+        10: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#fff7ed"/>
+              <ellipse cx="200" cy="232" rx="150" ry="14" fill="rgba(0,0,0,0.15)"/>
+              <!-- Folding Steel Legs -->
+              <path d="M78,135 L78,228 M115,110 L115,205" stroke="#1e293b" stroke-width="5.5" stroke-linecap="round"/>
+              <path d="M285,110 L285,205 M322,135 L322,228" stroke="#1e293b" stroke-width="5.5" stroke-linecap="round"/>
+              <!-- Medium-Wide 3x6ft Tabletop -->
+              <polygon points="90,82 340,82 310,132 60,132" fill="#fed7aa" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <polygon points="60,132 310,132 310,144 60,144" fill="#ea580c" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <polygon points="310,132 340,82 340,94 310,144" fill="#c2410c" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <text x="200" y="112" text-anchor="middle" fill="#111418" font-family="sans-serif" font-size="14" font-weight="900">3' × 6' KAKI</text>
+            </svg>`,
+
+        // 11. Meja 4 x 8 kaki (Extra Large 4ft x 8ft Banquet/Catering Table)
+        11: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#fef2f2"/>
+              <ellipse cx="200" cy="236" rx="168" ry="16" fill="rgba(0,0,0,0.16)"/>
+              <!-- Heavy Duty Legs -->
+              <path d="M55,142 L55,232 M100,105 L100,205 M200,142 L200,234 M300,105 L300,205 M345,142 L345,232" stroke="#111418" stroke-width="6" stroke-linecap="round"/>
+              <!-- Extra Wide & Long 4x8ft Tabletop -->
+              <polygon points="75,68 365,68 325,142 35,142" fill="#fca5a5" stroke="#111418" stroke-width="3.5" stroke-linejoin="round"/>
+              <polygon points="35,142 325,142 325,156 35,156" fill="#dc2626" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <polygon points="325,142 365,68 365,82 325,156" fill="#991b1b" stroke="#111418" stroke-width="3" stroke-linejoin="round"/>
+              <text x="200" y="112" text-anchor="middle" fill="#111418" font-family="sans-serif" font-size="16" font-weight="900">SAIZ BESAR: 4' × 8' KAKI</text>
+            </svg>`,
+
+        // 12. Meja Bulat 8 pax (Round Banquet Table with 8 Seat Indicators)
+        12: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#f8fafc"/>
+              <ellipse cx="200" cy="235" rx="95" ry="15" fill="rgba(0,0,0,0.15)"/>
+              <!-- 8 Chair Top-View/Perspective Indicators around table -->
+              <circle cx="200" cy="52" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="275" cy="68" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="315" cy="110" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="285" cy="155" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="115" cy="155" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="85" cy="110" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="125" cy="68" r="14" fill="#cbd5e1" stroke="#111418" stroke-width="2.5"/>
+              <!-- Table Legs -->
+              <path d="M145,130 L145,230 M255,130 L255,230 M145,185 L255,185" stroke="#1e293b" stroke-width="6"/>
+              <!-- Round Tabletop -->
+              <ellipse cx="200" cy="118" rx="98" ry="44" fill="#e2e8f0" stroke="#111418" stroke-width="3.5"/>
+              <ellipse cx="200" cy="110" rx="98" ry="44" fill="#ffffff" stroke="#111418" stroke-width="3.5"/>
+              <circle cx="200" cy="172" r="14" fill="#94a3b8" stroke="#111418" stroke-width="2.5"/>
+              <text x="200" y="115" text-anchor="middle" fill="#ff7700" font-family="sans-serif" font-size="16" font-weight="900">MEJA BULAT 8 PAX</text>
+            </svg>`,
+
+        // 13. Meja Bulat 10 pax (Large Round Banquet Table with 10 Seat Indicators)
+        13: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#fffbeb"/>
+              <ellipse cx="200" cy="238" rx="115" ry="16" fill="rgba(0,0,0,0.16)"/>
+              <!-- 10 Chair Indicators around table -->
+              <circle cx="200" cy="44" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="262" cy="52" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="312" cy="76" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="332" cy="114" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="305" cy="154" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="95" cy="154" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="68" cy="114" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="88" cy="76" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="138" cy="52" r="13" fill="#fde68a" stroke="#111418" stroke-width="2.5"/>
+              <!-- Table Base -->
+              <path d="M135,130 L135,232 M265,130 L265,232 M135,188 L265,188" stroke="#111418" stroke-width="6.5"/>
+              <!-- Large 10 Pax Round Table with Damask Cloth -->
+              <ellipse cx="200" cy="120" rx="115" ry="48" fill="#f59e0b" stroke="#111418" stroke-width="3.5"/>
+              <ellipse cx="200" cy="110" rx="115" ry="48" fill="#fef3c7" stroke="#111418" stroke-width="3.5"/>
+              <circle cx="200" cy="175" r="13" fill="#fbbf24" stroke="#111418" stroke-width="2.5"/>
+              <text x="200" y="115" text-anchor="middle" fill="#b45309" font-family="sans-serif" font-size="16" font-weight="900">MEJA BULAT 10 PAX</text>
+            </svg>`,
+
+        // 14. PA System (Complete Dual Speakers on Tripods + Mixer Console + Mics)
+        14: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#1e293b"/>
+              <!-- Left Speaker on Tripod -->
+              <path d="M85,175 L85,245 M85,210 L55,250 M85,210 L115,250" stroke="#94a3b8" stroke-width="4.5" stroke-linecap="round"/>
+              <rect x="52" y="55" width="66" height="120" rx="8" fill="#0f172a" stroke="#ff7700" stroke-width="3"/>
+              <circle cx="85" cy="85" r="14" fill="#334155" stroke="#cbd5e1" stroke-width="2"/>
+              <circle cx="85" cy="135" r="24" fill="#334155" stroke="#ff7700" stroke-width="2.5"/>
+              <!-- Right Speaker on Tripod -->
+              <path d="M315,175 L315,245 M315,210 L285,250 M315,210 L345,250" stroke="#94a3b8" stroke-width="4.5" stroke-linecap="round"/>
+              <rect x="282" y="55" width="66" height="120" rx="8" fill="#0f172a" stroke="#ff7700" stroke-width="3"/>
+              <circle cx="315" cy="85" r="14" fill="#334155" stroke="#cbd5e1" stroke-width="2"/>
+              <circle cx="315" cy="135" r="24" fill="#334155" stroke="#ff7700" stroke-width="2.5"/>
+              <!-- Center Mixing Console & Amp -->
+              <rect x="142" y="135" width="116" height="65" rx="6" fill="#334155" stroke="#f8fafc" stroke-width="3"/>
+              <line x1="158" y1="150" x2="158" y2="185" stroke="#00e1d9" stroke-width="3"/>
+              <line x1="178" y1="150" x2="178" y2="185" stroke="#00e1d9" stroke-width="3"/>
+              <line x1="198" y1="150" x2="198" y2="185" stroke="#ff7700" stroke-width="3"/>
+              <line x1="218" y1="150" x2="218" y2="185" stroke="#4ade80" stroke-width="3"/>
+              <circle cx="242" cy="160" r="7" fill="#ef4444"/><circle cx="242" cy="180" r="7" fill="#fbbf24"/>
+              <text x="200" y="235" text-anchor="middle" fill="#ffdd55" font-family="sans-serif" font-size="13" font-weight="900">COMPLETE PA SYSTEM</text>
+            </svg>`,
+
+        // 15. Speaker (Single Active Powered PA Speaker Box)
+        15: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#f1f5f9"/>
+              <ellipse cx="200" cy="248" rx="70" ry="12" fill="rgba(0,0,0,0.18)"/>
+              <!-- Speaker Cabinet -->
+              <rect x="135" y="28" width="130" height="205" rx="14" fill="#1e293b" stroke="#111418" stroke-width="4"/>
+              <rect x="146" y="39" width="108" height="183" rx="8" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+              <!-- High Frequency Horn -->
+              <rect x="165" y="52" width="70" height="32" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <!-- 15-inch Woofer Cone -->
+              <circle cx="200" cy="148" r="46" fill="#334155" stroke="#ff7700" stroke-width="3.5"/>
+              <circle cx="200" cy="148" r="18" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+              <!-- Sound Waves -->
+              <path d="M105,110 Q85,140 105,170 M90,95 Q65,140 90,185" fill="none" stroke="#ff7700" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M295,110 Q315,140 295,170 M310,95 Q335,140 310,185" fill="none" stroke="#ff7700" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>`,
+
+        // 16. Mikrofon (Dual Wireless Handheld Microphones & Receiver)
+        16: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#f8fafc"/>
+              <!-- Dual UHF Receiver Base -->
+              <rect x="95" y="185" width="210" height="50" rx="8" fill="#1e293b" stroke="#111418" stroke-width="3.5"/>
+              <line x1="115" y1="185" x2="100" y2="125" stroke="#111418" stroke-width="4" stroke-linecap="round"/>
+              <line x1="285" y1="185" x2="300" y2="125" stroke="#111418" stroke-width="4" stroke-linecap="round"/>
+              <rect x="120" y="198" width="65" height="24" rx="4" fill="#00e1d9"/>
+              <rect x="215" y="198" width="65" height="24" rx="4" fill="#00e1d9"/>
+              <!-- Handheld Wireless Mic 1 -->
+              <g transform="translate(155, 32) rotate(-18)">
+                <rect x="-14" y="35" width="28" height="105" rx="10" fill="#334155" stroke="#111418" stroke-width="3"/>
+                <rect x="-8" y="65" width="16" height="24" rx="3" fill="#4ade80"/>
+                <circle cx="0" cy="22" r="24" fill="#94a3b8" stroke="#111418" stroke-width="3"/>
+                <line x1="-22" y1="22" x2="22" y2="22" stroke="#111418" stroke-width="3"/>
+              </g>
+              <!-- Handheld Wireless Mic 2 -->
+              <g transform="translate(245, 32) rotate(18)">
+                <rect x="-14" y="35" width="28" height="105" rx="10" fill="#334155" stroke="#111418" stroke-width="3"/>
+                <rect x="-8" y="65" width="16" height="24" rx="3" fill="#ff7700"/>
+                <circle cx="0" cy="22" r="24" fill="#94a3b8" stroke="#111418" stroke-width="3"/>
+                <line x1="-22" y1="22" x2="22" y2="22" stroke="#111418" stroke-width="3"/>
+              </g>
+            </svg>`,
+
+        // 17. Kipas Siling Kanopi (Hanging 3-Blade Canopy Ceiling Fan)
+        17: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#ecfeff"/>
+              <!-- Canopy Top Truss Bar -->
+              <line x1="60" y1="25" x2="340" y2="25" stroke="#334155" stroke-width="10" stroke-linecap="round"/>
+              <!-- Downrod Pipe -->
+              <rect x="194" y="25" width="12" height="85" fill="#f8fafc" stroke="#111418" stroke-width="3"/>
+              <!-- 3 Wide Ceiling Fan Blades -->
+              <ellipse cx="105" cy="122" rx="75" ry="15" fill="#ffffff" stroke="#111418" stroke-width="3"/>
+              <ellipse cx="295" cy="122" rx="75" ry="15" fill="#ffffff" stroke="#111418" stroke-width="3"/>
+              <ellipse cx="200" cy="158" rx="22" ry="42" fill="#e2e8f0" stroke="#111418" stroke-width="3"/>
+              <!-- Center Motor Hub -->
+              <ellipse cx="200" cy="118" rx="34" ry="18" fill="#ffffff" stroke="#111418" stroke-width="3.5"/>
+              <!-- Breeze Waves -->
+              <path d="M130,195 Q165,220 200,195 T270,195" fill="none" stroke="#06b6d4" stroke-width="3.5" stroke-dasharray="6,6"/>
+              <path d="M110,225 Q155,250 200,225 T290,225" fill="none" stroke="#06b6d4" stroke-width="3.5" stroke-dasharray="6,6"/>
+            </svg>`,
+
+        // 18. Kipas Industri (Heavy Duty Stand Industrial Fan)
+        18: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#f1f5f9"/>
+              <!-- Heavy Cross Base & Pole -->
+              <path d="M130,252 L270,252 M160,235 L240,262" stroke="#111418" stroke-width="8" stroke-linecap="round"/>
+              <rect x="194" y="145" width="12" height="108" fill="#334155" stroke="#111418" stroke-width="3"/>
+              <!-- Industrial Cage & 3 Metal Blades -->
+              <circle cx="200" cy="100" r="68" fill="#e2e8f0" stroke="#111418" stroke-width="4"/>
+              <!-- Orange Industrial Fan Blades -->
+              <ellipse cx="200" cy="62" rx="16" ry="32" fill="#ff7700" stroke="#111418" stroke-width="2.5"/>
+              <ellipse cx="166" cy="120" rx="32" ry="16" transform="rotate(-30 166 120)" fill="#ff7700" stroke="#111418" stroke-width="2.5"/>
+              <ellipse cx="234" cy="120" rx="32" ry="16" transform="rotate(30 234 120)" fill="#ff7700" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="200" cy="100" r="14" fill="#111418"/>
+              <!-- Wire Guard Cage Rings -->
+              <circle cx="200" cy="100" r="50" fill="none" stroke="#111418" stroke-width="1.5"/>
+              <circle cx="200" cy="100" r="32" fill="none" stroke="#111418" stroke-width="1.5"/>
+            </svg>`,
+
+        // 19. Air Cooler (Commercial Portable Evaporative Air Cooler on Wheels)
+        19: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#e0f2fe"/>
+              <ellipse cx="200" cy="252" rx="80" ry="10" fill="rgba(0,0,0,0.18)"/>
+              <!-- Caster Wheels -->
+              <circle cx="148" cy="244" r="9" fill="#111418"/><circle cx="252" cy="244" r="9" fill="#111418"/>
+              <!-- Tall Commercial Cooler Body -->
+              <rect x="132" y="32" width="136" height="206" rx="10" fill="#ffffff" stroke="#111418" stroke-width="4"/>
+              <!-- Top Louver Grille -->
+              <rect x="146" y="48" width="108" height="86" rx="6" fill="#0f172a" stroke="#111418" stroke-width="2.5"/>
+              <circle cx="200" cy="91" r="34" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+              <line x1="146" y1="68" x2="254" y2="68" stroke="#94a3b8" stroke-width="3"/>
+              <line x1="146" y1="90" x2="254" y2="90" stroke="#94a3b8" stroke-width="3"/>
+              <line x1="146" y1="112" x2="254" y2="112" stroke="#94a3b8" stroke-width="3"/>
+              <!-- Water Tank Level Window (60L) -->
+              <rect x="146" y="148" width="108" height="74" rx="6" fill="#f1f5f9" stroke="#111418" stroke-width="2"/>
+              <rect x="190" y="160" width="20" height="50" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <text x="200" y="268" text-anchor="middle" fill="#0369a1" font-family="sans-serif" font-size="11" font-weight="900">COMMERCIAL AIR COOLER</text>
+            </svg>`,
+
+        // 20. Lampu Kanopi (Bright Event LED Batten Tube & Hanging Globe Light)
+        20: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#1e293b"/>
+              <!-- Warm Light Glow Aura -->
+              <ellipse cx="200" cy="135" rx="155" ry="75" fill="rgba(250, 204, 21, 0.22)"/>
+              <!-- Canopy Roof Frame Pipe -->
+              <line x1="40" y1="55" x2="360" y2="55" stroke="#64748b" stroke-width="8"/>
+              <!-- Hanging Hooks -->
+              <line x1="100" y1="55" x2="100" y2="105" stroke="#cbd5e1" stroke-width="3"/>
+              <line x1="300" y1="55" x2="300" y2="105" stroke="#cbd5e1" stroke-width="3"/>
+              <!-- 4ft LED Tube Light Fixture -->
+              <rect x="65" y="105" width="270" height="24" rx="12" fill="#fef08a" stroke="#facc15" stroke-width="4"/>
+              <rect x="75" y="111" width="250" height="12" rx="6" fill="#ffffff"/>
+              <!-- Light Rays -->
+              <line x1="200" y1="145" x2="200" y2="215" stroke="#fde047" stroke-width="4" stroke-linecap="round"/>
+              <line x1="140" y1="145" x2="115" y2="205" stroke="#fde047" stroke-width="4" stroke-linecap="round"/>
+              <line x1="260" y1="145" x2="285" y2="205" stroke="#fde047" stroke-width="4" stroke-linecap="round"/>
+              <text x="200" y="250" text-anchor="middle" fill="#fef08a" font-family="sans-serif" font-size="12" font-weight="900">LAMPU LED KANOPI 4 KAKI</text>
+            </svg>`,
+
+        // 21. Extension Wiring / Kabel Sambungan (Heavy Duty Industrial Cable Reel & Socket Box)
+        21: `<svg viewBox="0 0 400 280" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#fff7ed"/>
+              <ellipse cx="200" cy="244" rx="95" ry="12" fill="rgba(0,0,0,0.16)"/>
+              <!-- Heavy Duty A-Frame Stand & Handle -->
+              <path d="M135,240 L170,130 L230,130 L265,240" fill="none" stroke="#111418" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="175" y="22" width="50" height="16" rx="6" fill="#ff7700" stroke="#111418" stroke-width="3"/>
+              <!-- Cable Drum Reel -->
+              <circle cx="200" cy="130" r="82" fill="#1e293b" stroke="#111418" stroke-width="4"/>
+              <circle cx="200" cy="130" r="64" fill="#ff7700" stroke="#111418" stroke-width="3.5"/>
+              <!-- 4 Industrial 13A Socket Outlets -->
+              <rect x="168" y="98" width="26" height="26" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.5"/>
+              <rect x="206" y="98" width="26" height="26" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.5"/>
+              <rect x="168" y="136" width="26" height="26" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.5"/>
+              <rect x="206" y="136" width="26" height="26" rx="4" fill="#ef4444" stroke="#111418" stroke-width="2.5"/>
+              <!-- Heavy Trailing Plug Cable -->
+              <path d="M125,180 Q75,205 95,235 T145,235" fill="none" stroke="#111418" stroke-width="7" stroke-linecap="round"/>
+            </svg>`
+      };
+
+      const svgContent = visuals[id] || visuals[1];
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svgContent);
+    }
+
+    // Exact 21 Catalog Data Items matching BORNEO HEX Internal Reference
+    const products = [
+      {
+        id: 1,
+        name: "Kanopi 3m × 3m",
+        desc: "Anggaran 10 × 10 kaki",
+        cat: "canopy",
+        rent: 150,
+        sale: 1800,
+        rentLabel: "RM150 / 3 hari",
+        popular: false,
+        folderFile: "images/kanopi-3x3m.jpg",
+        specs: "Keluasan: 10' × 10' kaki | Sesuai untuk gerai, pos kawalan & kaunter pendaftaran."
+      },
+      {
+        id: 2,
+        name: "Kanopi 3m × 6m",
+        desc: "Anggaran 10 × 20 kaki",
+        cat: "canopy",
+        rent: 250,
+        sale: 2300,
+        rentLabel: "RM250 / 3 hari",
+        popular: true,
+        folderFile: "images/kanopi-3x6m.jpg",
+        specs: "Keluasan: 10' × 20' kaki | Reka bentuk memanjang untuk ruang buffet & pameran."
+      },
+      {
+        id: 3,
+        name: "Kanopi 6m × 6m",
+        desc: "Anggaran 20 × 20 kaki",
+        cat: "canopy",
+        rent: 350,
+        sale: 2900,
+        rentLabel: "RM350 / 3 hari",
+        popular: true,
+        folderFile: "images/kanopi-6x6m.jpg",
+        specs: "Keluasan: 20' × 20' kaki | Saiz utama kenduri & acara (Muatan 4-5 meja bulat)."
+      },
+      {
+        id: 4,
+        name: "Arabian Canopy",
+        desc: "Untuk majlis dan acara",
+        cat: "canopy",
+        rent: 350,
+        sale: null,
+        rentLabel: "RM350 / 3 hari",
+        popular: true,
+        folderFile: "images/arabian-canopy.jpg",
+        specs: "Saiz 20' × 20' Bumbung Tinggi Melengkung | Kemasan eksklusif majlis perkahwinan & VIP."
+      },
+      {
+        id: 5,
+        name: "Gazebo 3m × 3m",
+        desc: "Gazebo kompak",
+        cat: "canopy",
+        rent: null,
+        sale: 650,
+        rentLabel: null,
+        popular: false,
+        folderFile: "images/gazebo-3x3m.jpg",
+        specs: "Saiz: 3m × 3m | Jualan unit gazebo kompak lengkap bumbung pengudaraan."
+      },
+      {
+        id: 6,
+        name: "Pop-Up Tent 3m × 3m",
+        desc: "Khemah pop-up kompak",
+        cat: "canopy",
+        rent: null,
+        sale: 160,
+        rentLabel: null,
+        popular: false,
+        folderFile: "images/popup-tent-3x3m.jpg",
+        specs: "Saiz: 3m × 3m | Khemah rangka gunting lipat mudah alih pasang pantas."
+      },
+      {
+        id: 7,
+        name: "Kerusi Plastik",
+        desc: "Untuk majlis dan program",
+        cat: "furniture",
+        rent: 3,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM3.00 / unit",
+        popular: true,
+        folderFile: "images/kerusi-plastik.jpg",
+        specs: "Kerusi plastik tahan lasak boleh susun bertingkat untuk majlis dan kenduri."
+      },
+      {
+        id: 8,
+        name: "Kerusi Banquet",
+        desc: "Untuk acara formal",
+        cat: "furniture",
+        rent: 45,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM45.00 / unit",
+        popular: false,
+        folderFile: "images/kerusi-banquet.jpg",
+        specs: "Kerusi banquet berkusyen tebal dengan rangka besi teguh untuk majlis rasmi & VIP."
+      },
+      {
+        id: 9,
+        name: "Meja 2 × 6 kaki",
+        desc: "Meja panjang",
+        cat: "furniture",
+        rent: 35,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM35.00 / unit",
+        popular: false,
+        folderFile: "images/meja-2x6.jpg",
+        specs: "Dimensi: 2 kaki lebar × 6 kaki panjang | Sesuai untuk pendaftaran & hidangan."
+      },
+      {
+        id: 10,
+        name: "Meja 3 × 6 kaki",
+        desc: "Meja panjang sederhana",
+        cat: "furniture",
+        rent: 45,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM45.00 / unit",
+        popular: false,
+        folderFile: "images/meja-3x6.jpg",
+        specs: "Dimensi: 3 kaki lebar × 6 kaki panjang | Permukaan lebih luas untuk buffet."
+      },
+      {
+        id: 11,
+        name: "Meja 4 × 8 kaki",
+        desc: "Meja panjang bersaiz besar",
+        cat: "furniture",
+        rent: 60,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM60.00 / unit",
+        popular: false,
+        folderFile: "images/meja-4x8.jpg",
+        specs: "Dimensi: 4 kaki lebar × 8 kaki panjang | Saiz ekstra besar untuk katering & pameran."
+      },
+      {
+        id: 12,
+        name: "Meja Bulat 8 pax",
+        desc: "Untuk 8 orang",
+        cat: "furniture",
+        rent: 80,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM80.00 / unit",
+        popular: true,
+        folderFile: "images/meja-bulat-8pax.jpg",
+        specs: "Meja bulat bankuet muatan selesa untuk 8 orang tetamu."
+      },
+      {
+        id: 13,
+        name: "Meja Bulat 10 pax",
+        desc: "Untuk 10 orang",
+        cat: "furniture",
+        rent: 80,
+        sale: null,
+        unit: "/ unit",
+        rentLabel: "RM80.00 / unit",
+        popular: true,
+        folderFile: "images/meja-bulat-10pax.jpg",
+        specs: "Meja bulat bankuet bersaiz besar untuk kapasiti 10 orang tetamu."
+      },
+      {
+        id: 14,
+        name: "PA System",
+        desc: "Audio untuk majlis",
+        cat: "audio",
+        rent: null,
+        sale: null,
+        rentLabel: "Tanya Harga",
+        popular: true,
+        folderFile: "images/pa-system.jpg",
+        specs: "Set lengkap sistem pembesar suara, mixer konsol & mikrofon untuk acara."
+      },
+      {
+        id: 15,
+        name: "Speaker",
+        desc: "Sistem pembesar suara",
+        cat: "audio",
+        rent: null,
+        sale: null,
+        rentLabel: "Tanya Harga",
+        popular: false,
+        folderFile: "images/speaker.jpg",
+        specs: "Unit pembesar suara aktif berkuasa tinggi untuk pengumuman & muzik latar."
+      },
+      {
+        id: 16,
+        name: "Mikrofon",
+        desc: "Untuk ucapan dan pengumuman",
+        cat: "audio",
+        rent: null,
+        sale: null,
+        rentLabel: "Tanya Harga",
+        popular: false,
+        folderFile: "images/mikrofon.jpg",
+        specs: "Set mikrofon jelas untuk juruacara, ucapan rasmi & persembahan."
+      },
+      {
+        id: 17,
+        name: "Kipas Siling Kanopi",
+        desc: "Pengudaraan kanopi",
+        cat: "electrical",
+        rent: 45,
+        sale: null,
+        rentLabel: "RM45.00",
+        popular: false,
+        folderFile: "images/kipas-siling-kanopi.jpg",
+        specs: "Kipas siling gantung khas di bahagian tengah bumbung kanopi."
+      },
+      {
+        id: 18,
+        name: "Kipas Industri",
+        desc: "Aliran udara kawasan acara",
+        cat: "electrical",
+        rent: 150,
+        sale: null,
+        rentLabel: "RM150.00",
+        popular: true,
+        folderFile: "images/kipas-industri.jpg",
+        specs: "Kipas berdiri industri berkuasa tinggi untuk aliran angin deras."
+      },
+      {
+        id: 19,
+        name: "Air Cooler",
+        desc: "Penyejukan ruang acara",
+        cat: "electrical",
+        rent: 250,
+        sale: null,
+        rentLabel: "RM250.00",
+        popular: true,
+        folderFile: "images/air-cooler.jpg",
+        specs: "Penyejuk udara tangki air besar beroda untuk menyejukkan ruang khemah."
+      },
+      {
+        id: 20,
+        name: "Lampu Kanopi",
+        desc: "Pencahayaan acara",
+        cat: "electrical",
+        rent: 25,
+        sale: null,
+        rentLabel: "RM25.00",
+        popular: false,
+        folderFile: "images/lampu-kanopi.jpg",
+        specs: "Set lampu LED terang untuk pencahayaan kanopi pada waktu malam."
+      },
+      {
+        id: 21,
+        name: "Extension Wiring / Kabel Sambungan",
+        desc: "Kabel sambungan acara",
+        cat: "electrical",
+        rent: 150,
+        sale: null,
+        rentLabel: "RM150.00",
+        popular: false,
+        folderFile: "images/extension-wiring.jpg",
+        specs: "Kabel sambungan heavy-duty & soket agihan kuasa selamat untuk tapak acara."
+      }
+    ];
+
+    // Helper to resolve image source: Custom Uploaded -> Local ./images/ folder -> Exact Generic Item SVG
+    function getProductImageSrc(item) {
+      if (customImageStore[item.id]) return customImageStore[item.id];
+      return getGenericItemVisualSVG(item.id);
+    }
+
+    // State Variables
+    let currentCategory = "all";
+    let searchQuery = "";
+    let cart = [];
+    
+    // AR State
+    let arVideoStream = null;
+    let isLiveCamera = false;
+    let arScale = 1.0;
+    let arRotate = 0;
+    let arPos = { x: 0, y: 0 };
+    let isDraggingAR = false;
+    let dragStartPos = { x: 0, y: 0 };
+
+    // Format Currency Helper
+    function formatRM(num) {
+      if (num === null || isNaN(num)) return "Tanya Harga";
+      return "RM" + num.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Set Active Filter Category
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll(".cat-pill").forEach(btn => {
+        const isSelected = btn.getAttribute("data-cat") === cat;
+        if (isSelected) {
+          btn.className = "cat-pill comic-btn bg-black text-white px-4 py-2 rounded-xl whitespace-nowrap";
+        } else {
+          btn.className = "cat-pill comic-btn bg-white text-black px-4 py-2 rounded-xl whitespace-nowrap";
+        }
+      });
+      renderCatalog();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById("searchInput").value.trim().toLowerCase();
+      renderCatalog();
+    }
+
+    function resetFilters() {
+      document.getElementById("searchInput").value = "";
+      searchQuery = "";
+      document.getElementById("dealMode").value = "all";
+      document.getElementById("sortFilter").value = "default";
+      setCategory("all");
+    }
+
+    // Render Digital Marketplace Cards
+    function renderCatalog() {
+      const mode = document.getElementById("dealMode").value;
+      const sort = document.getElementById("sortFilter").value;
+      const grid = document.getElementById("productGrid");
+      const emptyState = document.getElementById("emptyCatalogState");
+
+      // Filter products
+      let list = products.filter(item => {
+        const matchCat = currentCategory === "all" || item.cat === currentCategory;
+        const matchQuery = item.name.toLowerCase().includes(searchQuery) || 
+                             item.desc.toLowerCase().includes(searchQuery) ||
+                             (item.specs && item.specs.toLowerCase().includes(searchQuery));
+        
+        let matchMode = true;
+        if (mode === "rent") matchMode = item.rent !== null;
+        if (mode === "sale") matchMode = item.sale !== null;
+
+        return matchCat && matchQuery && matchMode;
+      });
+
+      // Sort
+      if (sort === "price-asc") {
+        list.sort((a, b) => (a.rent || a.sale || 99999) - (b.rent || b.sale || 99999));
+      } else if (sort === "price-desc") {
+        list.sort((a, b) => (b.rent || b.sale || 0) - (a.rent || a.sale || 0));
+      }
+
+      // Handle Empty State
+      if (list.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      } else {
+        emptyState.classList.add("hidden");
+      }
+
+      // Render Cards
+      grid.innerHTML = list.map(item => {
+        // Price badges
+        const hasRent = item.rent !== null;
+        const hasSale = item.sale !== null;
+
+        let priceHtml = "";
+        if (hasRent && hasSale) {
+          priceHtml = `
+            <div class="flex flex-col">
+              <span class="text-xs text-slate-500 font-bold uppercase">Sewa (3 Hari):</span>
+              <span class="font-black text-base text-orange-600">${formatRM(item.rent)}</span>
+            </div>
+            <div class="flex flex-col text-right">
+              <span class="text-xs text-slate-500 font-bold uppercase">Beli Terus:</span>
+              <span class="font-bold text-sm text-slate-800">${formatRM(item.sale)}</span>
+            </div>
+          `;
+        } else if (hasRent) {
+          priceHtml = `
+            <div class="flex flex-col">
+              <span class="text-xs text-slate-500 font-bold uppercase">Kadar Sewaan:</span>
+              <span class="font-black text-lg text-orange-600">${formatRM(item.rent)} <small class="text-xs font-semibold text-slate-600">${item.unit || '/ 3 hari'}</small></span>
+            </div>
+          `;
+        } else if (hasSale) {
+          priceHtml = `
+            <div class="flex flex-col">
+              <span class="text-xs text-slate-500 font-bold uppercase">Harga Belian:</span>
+              <span class="font-black text-lg text-emerald-700">${formatRM(item.sale)}</span>
+            </div>
+          `;
+        } else {
+          priceHtml = `
+            <div class="flex flex-col">
+              <span class="text-xs text-slate-500 font-bold uppercase">Pakej Khusus:</span>
+              <span class="font-black text-base text-slate-900 bg-amber-200 px-2 py-0.5 rounded border border-black inline-block">Tanya Sebut Harga</span>
+            </div>
+          `;
+        }
+
+        return `
+          <article class="comic-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+            
+            <!-- Image Thumbnail & Badges -->
+            <div class="relative w-full h-48 bg-slate-100 border-b-3 border-black overflow-hidden cursor-pointer" onclick="openQuickView(${item.id})">
+              <img 
+                src="${customImageStore[item.id] ? customImageStore[item.id] : item.folderFile}" 
+                alt="${item.name}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='${getGenericItemVisualSVG(item.id)}';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+
+              <!-- Top Badges -->
+              <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+                ${item.popular ? `<span class="bg-amber-400 text-black border-2 border-black font-black text-[10px] px-2 py-0.5 rounded shadow-[2px_2px_0px_#000]">POPULAR</span>` : ''}
+                ${hasRent ? `<span class="bg-white text-black border-2 border-black font-extrabold text-[10px] px-2 py-0.5 rounded shadow-[2px_2px_0px_#000]">SEWA</span>` : ''}
+                ${hasSale ? `<span class="bg-emerald-400 text-black border-2 border-black font-extrabold text-[10px] px-2 py-0.5 rounded shadow-[2px_2px_0px_#000]">BELI</span>` : ''}
+              </div>
+
+              <!-- Item Name Tag Pill on Image -->
+              <div class="absolute bottom-2.5 left-2.5 bg-white/95 text-black border-2 border-black text-[10px] font-black px-2 py-0.5 rounded shadow-[2px_2px_0px_#000] max-w-[65%] truncate">
+                ${item.name}
+              </div>
+
+              <!-- AR Icon badge for all items -->
+              <button onclick="event.stopPropagation(); launchARForItem('${item.name}')" class="absolute bottom-2.5 right-2.5 bg-black/85 hover:bg-black text-[#00e1d9] border border-white/60 text-[10px] font-black px-2 py-1 rounded-md flex items-center gap-1">
+                <i data-lucide="scan" class="w-3 h-3"></i>
+                <span>AR Sim</span>
+              </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-base text-black group-hover:text-orange-600 transition-colors leading-snug cursor-pointer" onclick="openQuickView(${item.id})">
+                  ${item.name}
+                </h3>
+                <p class="text-xs text-gray-600 line-clamp-2 mt-1 mb-3">
+                  ${item.desc}
+                </p>
+              </div>
+
+              <!-- Pricing Section -->
+              <div class="pt-3 border-t-2 border-slate-200 mb-3 flex items-center justify-between">
+                ${priceHtml}
+              </div>
+
+              <!-- Card Action Controls -->
+              <div class="grid grid-cols-4 gap-2">
+                <input 
+                  type="number" 
+                  min="1" 
+                  value="1" 
+                  id="qty-${item.id}"
+                  aria-label="Kuantiti bagi ${item.name}"
+                  class="col-span-1 text-center font-black text-sm border-2 border-black rounded-xl bg-slate-50 focus:bg-white"
+                >
+                <button 
+                  onclick="addItemToCart(${item.id})"
+                  class="col-span-3 comic-btn bg-[#ff7700] hover:bg-orange-500 text-black text-xs font-black py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5"
+                >
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Tambah Pilihan</span>
+                </button>
+              </div>
+
+            </div>
+
+          </article>
+        `;
+      }).join("");
+
+      // Re-initialize Lucide Icons
+      lucide.createIcons();
+    }
+
+    // Add item to cart with quantity & default type
+    function addItemToCart(productId, specificMode = null, specificQty = null) {
+      const p = products.find(x => x.id === productId);
+      if (!p) return;
+
+      const qtyInput = document.getElementById(`qty-${productId}`);
+      const quantity = specificQty || (qtyInput ? Math.max(1, parseInt(qtyInput.value) || 1) : 1);
+      
+      // Auto determine rent or sale if not specified
+      let mode = specificMode;
+      if (!mode) {
+        mode = p.rent !== null ? "rent" : "sale";
+      }
+
+      const key = `${p.id}-${mode}`;
+      const existing = cart.find(item => item.key === key);
+
+      if (existing) {
+        existing.qty += quantity;
+      } else {
+        cart.push({
+          key,
+          id: p.id,
+          name: p.name,
+          mode: mode,
+          price: mode === "rent" ? p.rent : p.sale,
+          qty: quantity,
+          unit: p.unit || (mode === "rent" ? "/ 3 hari" : "/ unit")
+        });
+      }
+
+      showToast(`Ditambah: ${quantity}x ${p.name} (${mode === "rent" ? "Sewa" : "Beli"})`);
+      updateCartDisplay();
+      
+      // Reset input quantity
+      if (qtyInput) qtyInput.value = 1;
+    }
+
+    // Update Cart UI, count and subtotal
+    function updateCartDisplay() {
+      const itemsList = document.getElementById("cartItemsList");
+      const emptyView = document.getElementById("emptyCartView");
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+
+      // Header & Floating Badge Counters
+      document.getElementById("headerCartCount").textContent = totalCount;
+      const floatingBadge = document.getElementById("floatingCartBadge");
+      if (floatingBadge) floatingBadge.textContent = totalCount;
+
+      if (cart.length === 0) {
+        emptyView.classList.remove("hidden");
+        itemsList.innerHTML = "";
+        document.getElementById("cartSubtotal").textContent = "RM0.00";
+        return;
+      }
+
+      emptyView.classList.add("hidden");
+
+      let subtotal = 0;
+      itemsList.innerHTML = cart.map(item => {
+        const itemTotal = item.price !== null ? item.price * item.qty : null;
+        if (itemTotal !== null) subtotal += itemTotal;
+
+        return `
+          <div class="bg-slate-50 border-2 border-black rounded-xl p-3 flex items-start justify-between gap-2 shadow-[2px_2px_0px_#111]">
+            <div class="flex-1">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded ${item.mode === 'rent' ? 'bg-orange-200 text-orange-900 border border-orange-400' : 'bg-emerald-200 text-emerald-900 border border-emerald-400'}">
+                  ${item.mode === 'rent' ? 'SEWA' : 'BELI'}
+                </span>
+                <h4 class="font-black text-xs text-black leading-tight">${item.name}</h4>
+              </div>
+
+              <div class="text-[11px] text-gray-600 mt-1 flex items-center gap-2">
+                <span>Kadar: ${formatRM(item.price)}</span>
+                <span>•</span>
+                <span>Jumlah: <strong class="text-black">${formatRM(itemTotal)}</strong></span>
+              </div>
+
+              <!-- Quantity buttons inside drawer -->
+              <div class="flex items-center gap-2 mt-2">
+                <div class="flex items-center border border-black rounded-lg bg-white overflow-hidden text-xs">
+                  <button onclick="adjustCartQty('${item.key}', -1)" class="px-2 py-0.5 hover:bg-slate-200 font-black">-</button>
+                  <span class="px-2 font-bold">${item.qty}</span>
+                  <button onclick="adjustCartQty('${item.key}', 1)" class="px-2 py-0.5 hover:bg-slate-200 font-black">+</button>
+                </div>
+                <button onclick="removeCartItem('${item.key}')" class="text-[10px] font-bold text-red-600 hover:underline">
+                  Buang
+                </button>
+              </div>
+            </div>
+
+            <div class="text-right font-comic text-base text-black">
+              ${itemTotal !== null ? formatRM(itemTotal) : '<span class="text-xs bg-amber-200 px-1.5 py-0.5 rounded border border-black">Tanya</span>'}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("cartSubtotal").textContent = formatRM(subtotal);
+      lucide.createIcons();
+    }
+
+    function adjustCartQty(key, delta) {
+      const item = cart.find(x => x.key === key);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(x => x.key !== key);
+      }
+      updateCartDisplay();
+    }
+
+    function removeCartItem(key) {
+      cart = cart.filter(x => x.key !== key);
+      updateCartDisplay();
+    }
+
+    function clearFullCart() {
+      if (cart.length === 0) return;
+      cart = [];
+      updateCartDisplay();
+      showToast("Senarai pilihan telah dikosongkan");
+    }
+
+    // Toggle Cart Drawer
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById("cartDrawer");
+      const backdrop = document.getElementById("cartBackdrop");
+      const panel = document.getElementById("cartPanel");
+
+      if (open) {
+        backdrop.classList.remove("hidden");
+        setTimeout(() => {
+          backdrop.classList.remove("opacity-0");
+          backdrop.classList.add("opacity-100");
+          panel.classList.remove("translate-x-full");
+        }, 10);
+      } else {
+        backdrop.classList.remove("opacity-100");
+        backdrop.classList.add("opacity-0");
+        panel.classList.add("translate-x-full");
+        setTimeout(() => {
+          backdrop.classList.add("hidden");
+        }, 300);
+      }
+    }
+
+    // Quick View Modal
+    function openQuickView(id) {
+      const item = products.find(x => x.id === id);
+      if (!item) return;
+
+      const content = document.getElementById("quickViewContent");
+      content.innerHTML = `
+        <div class="space-y-4">
+          <div class="w-full h-56 rounded-xl overflow-hidden border-2 border-black bg-slate-100">
+            <img src="${customImageStore[item.id] ? customImageStore[item.id] : item.folderFile}" onerror="this.onerror=null; this.src='${getGenericItemVisualSVG(item.id)}';" alt="${item.name}" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-black uppercase text-orange-600 bg-orange-100 px-2 py-0.5 rounded border border-orange-300">
+                Kategori: ${item.cat}
+              </span>
+              <code class="text-[11px] bg-slate-100 px-2 py-0.5 rounded border border-slate-300 font-bold text-slate-600">./${item.folderFile}</code>
+            </div>
+            <h2 class="font-comic text-2xl text-black mt-1">${item.name}</h2>
+            <p class="text-xs text-gray-700 leading-relaxed mt-1">${item.desc}</p>
+          </div>
+
+          <div class="bg-amber-50 border-2 border-black p-3 rounded-xl text-xs space-y-1">
+            <div class="font-black text-black">Spesifikasi & Kegunaan:</div>
+            <div class="text-gray-700">${item.specs || 'Peralatan standard industri.'}</div>
+          </div>
+
+          <div class="flex items-center justify-between border-t-2 border-slate-200 pt-3">
+            <div>
+              <div class="text-[11px] font-bold text-gray-500 uppercase">Kadar Sewa:</div>
+              <div class="text-xl font-black text-orange-600">${formatRM(item.rent)}</div>
+            </div>
+            ${item.sale ? `
+              <div class="text-right">
+                <div class="text-[11px] font-bold text-gray-500 uppercase">Harga Beli:</div>
+                <div class="text-base font-black text-slate-800">${formatRM(item.sale)}</div>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="flex gap-2 pt-2">
+            <button onclick="addItemToCart(${item.id}); closeQuickView();" class="comic-btn w-full bg-[#ff7700] hover:bg-orange-500 text-black font-black py-2.5 rounded-xl text-xs uppercase flex items-center justify-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span>Tambah Ke Pilihan</span>
+            </button>
+            <button onclick="launchARForItem('${item.name}'); closeQuickView();" class="comic-btn bg-[#00e1d9] text-black font-black px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="scan" class="w-4 h-4"></i>
+              <span>AR Preview</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("quickViewModal").classList.remove("hidden");
+      document.getElementById("quickViewModal").classList.add("flex");
+      lucide.createIcons();
+    }
+
+    function closeQuickView() {
+      document.getElementById("quickViewModal").classList.add("hidden");
+      document.getElementById("quickViewModal").classList.remove("flex");
+    }
+
+    // FOLDER GUIDE & CUSTOM IMAGE OVERRIDE FUNCTIONS
+    function openFolderGuideModal() {
+      const container = document.getElementById("folderFileList");
+      container.innerHTML = products.map(p => `
+        <div class="border-2 border-black rounded-xl p-2.5 flex items-center justify-between gap-2 bg-slate-50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <img src="${getProductImageSrc(p)}" class="w-11 h-11 rounded-lg border border-black object-cover shrink-0 bg-white"/>
+            <div class="min-w-0">
+              <div class="font-extrabold text-black truncate">${p.name}</div>
+              <code class="text-[10px] text-orange-700 font-bold block truncate">./${p.folderFile}</code>
+            </div>
+          </div>
+          <label class="comic-btn bg-amber-300 hover:bg-amber-400 text-black text-[10px] font-black px-2.5 py-1.5 rounded-lg cursor-pointer shrink-0">
+            Pilih Fail
+            <input type="file" accept="image/*" class="hidden" onchange="handleLocalImageUpload(event, ${p.id})">
+          </label>
+        </div>
+      `).join("");
+
+      document.getElementById("folderGuideModal").classList.remove("hidden");
+      document.getElementById("folderGuideModal").classList.add("flex");
+      lucide.createIcons();
+    }
+
+    function closeFolderGuideModal() {
+      document.getElementById("folderGuideModal").classList.add("hidden");
+      document.getElementById("folderGuideModal").classList.remove("flex");
+    }
+
+    function handleLocalImageUpload(event, productId) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        customImageStore[productId] = e.target.result;
+        renderCatalog();
+        openFolderGuideModal();
+        showToast("Gambar berjaya dikemas kini untuk item #" + productId);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetCustomImages() {
+      Object.keys(customImageStore).forEach(k => delete customImageStore[k]);
+      renderCatalog();
+      openFolderGuideModal();
+      showToast("Semua gambar kembali ke Grafik Generik Asal.");
+    }
+
+    // TOAST SYSTEM
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toastMessage").textContent = msg;
+      toast.classList.remove("hide");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hide");
+      }, 3000);
+    }
+
+    // WHATSAPP SUBMISSION GENERATOR
+    function generateWhatsAppMessage() {
+      if (cart.length === 0) return null;
+
+      const custName = document.getElementById("custName").value.trim() || "Pelanggan (Belum dinyatakan)";
+      const custDate = document.getElementById("custDate").value || "Akan dimaklumkan";
+      const custDuration = document.getElementById("custDuration").value || "3";
+      const custLocation = document.getElementById("custLocation").value.trim() || "Kawasan Bintulu (Sila sahkan)";
+
+      let subtotal = 0;
+      const itemsList = cart.map((item, idx) => {
+        const itemTotal = item.price !== null ? item.price * item.qty : null;
+        if (itemTotal !== null) subtotal += itemTotal;
+        const priceStr = itemTotal !== null ? formatRM(itemTotal) : "Tanya Sebut Harga";
+        return `${idx + 1}. *${item.name}*\n   • Jenis: ${item.mode === 'rent' ? 'Sewa (' + custDuration + ' Hari)' : 'Belian Terus'}\n   • Kuantiti: ${item.qty} unit\n   • Anggaran: ${priceStr}`;
+      }).join("\n\n");
+
+      const message = 
+`Halo *BORNEO HEX Bintulu*, saya ingin membuat semakan sebut harga & ketersediaan stok peralatan berikut:
+
+━━━━━━━━━━━━━━━━━━━━
+🎪 *SENARAI PESANAN ITEM:*
+${itemsList}
+
+━━━━━━━━━━━━━━━━━━━━
+💰 *ANGGARAN SUBTOTAL:* ${formatRM(subtotal)}
+_(Nota: Caj penghantaran & pemasangan ditentukan secara manual mengikut jarak lokasi)._
+
+📋 *BUTIRAN MAJLIS & PELANGGAN:*
+• Nama: ${custName}
+• Tarikh Majlis: ${custDate}
+• Tempoh Sewaan: ${custDuration} Hari
+• Lokasi Majlis: ${custLocation}
+
+Mohon pihak Borneo Hex mengesahkan ketersediaan tarikh dan sebut harga rasmi. Terima kasih!`;
+
+      return message;
+    }
+
+    function submitToWhatsApp() {
+      if (cart.length === 0) {
+        showToast("Sila pilih sekurang-kurangnya satu produk!");
+        return;
+      }
+      const message = generateWhatsAppMessage();
+      const url = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+
+    function copyQuotationSummary() {
+      const message = generateWhatsAppMessage();
+      if (!message) {
+        showToast("Senarai pilihan masih kosong!");
+        return;
+      }
+      copyToClipboard(message, "Ringkasan sebut harga berjaya disalin!");
+    }
+
+    function copyPriceList() {
+      const groups = {
+        "KANOPI": "canopy",
+        "KERUSI & MEJA": "furniture",
+        "AUDIO": "audio",
+        "KIPAS & ELEKTRIK": "electrical"
+      };
+      let out = ["BORNEO HEX — SENARAI RUJUKAN HARGA", ""];
+      Object.entries(groups).forEach(([label, cat]) => {
+        out.push(label);
+        products.filter(p => p.cat === cat).forEach(p => {
+          let price = [];
+          if (p.rent !== null) price.push("Sewa: " + formatRM(p.rent) + (p.unit ? " " + p.unit : ""));
+          if (p.sale !== null) price.push("Beli: " + formatRM(p.sale));
+          out.push("• " + p.name + " — " + (price.join(" | ") || "Tanya Harga"));
+        });
+        out.push("");
+      });
+      out.push("Harga dan stok perlu disahkan. Caj penghantaran ditentukan secara manual.");
+      copyToClipboard(out.join("\n"), "Senarai harga berjaya disalin!");
+    }
+
+    function copyReplyTemplate() {
+      const replyText = "Hi, terima kasih kerana menghubungi BORNEO HEX! 😊\n\nKami menyediakan sewaan dan jualan kanopi serta peralatan event di Bintulu dan kawasan sekitar.\n\nBoleh beritahu item yang diperlukan, tarikh acara dan lokasi? Kami akan semak ketersediaan dan sahkan sebut harga.\n\nWhatsApp: 014-812 8806";
+      copyToClipboard(replyText, "Jawapan WhatsApp berjaya disalin!");
+    }
+
+    function copyToClipboard(text, successMsg) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        showToast(successMsg);
+      } catch (err) {
+        showToast("Gagal menyalin teks ke papan keratan.");
+      }
+      document.body.removeChild(textarea);
+    }
+
+    // AR VISUALIZER / CAMERA FUNCTIONS
+    function openARModal() {
+      document.getElementById("arModal").classList.remove("hidden");
+      document.getElementById("arModal").classList.add("flex");
+      initARCamera();
+      lucide.createIcons();
+    }
+
+    function launchARForItem(itemName) {
+      openARModal();
+      const selector = document.getElementById("arModelSelector");
+      if (itemName.includes("3m × 3m")) selector.value = "3x3";
+      else if (itemName.includes("3m × 6m")) selector.value = "3x6";
+      else if (itemName.includes("Arabian")) selector.value = "arabian";
+      else selector.value = "6x6";
+      changeARModel(selector.value);
+    }
+
+    function closeARModal() {
+      document.getElementById("arModal").classList.add("hidden");
+      document.getElementById("arModal").classList.remove("flex");
+      stopARCamera();
+    }
+
+    async function initARCamera() {
+      const video = document.getElementById("arVideo");
+      const fallbackImg = document.getElementById("arFallbackImg");
+      const statusText = document.getElementById("camStatusText");
+
+      try {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          arVideoStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: "environment" } }
+          });
+          video.srcObject = arVideoStream;
+          video.classList.remove("hidden");
+          fallbackImg.classList.add("hidden");
+          isLiveCamera = true;
+          statusText.textContent = "Kamera Belakang Aktif";
+        } else {
+          throw new Error("No camera support");
+        }
+      } catch (e) {
+        // Fallback to static yard background
+        video.classList.add("hidden");
+        fallbackImg.classList.remove("hidden");
+        isLiveCamera = false;
+        statusText.textContent = "Mod Simulasi (Latar Contoh Tapak)";
+      }
+    }
+
+    function stopARCamera() {
+      if (arVideoStream) {
+        arVideoStream.getTracks().forEach(track => track.stop());
+        arVideoStream = null;
+      }
+    }
+
+    function toggleCameraSource() {
+      const video = document.getElementById("arVideo");
+      const fallbackImg = document.getElementById("arFallbackImg");
+      const statusText = document.getElementById("camStatusText");
+
+      if (isLiveCamera) {
+        stopARCamera();
+        video.classList.add("hidden");
+        fallbackImg.classList.remove("hidden");
+        isLiveCamera = false;
+        statusText.textContent = "Mod Simulasi (Latar Tapak)";
+      } else {
+        initARCamera();
+      }
+    }
+
+    function changeARModel(model) {
+      const tag = document.getElementById("arSizeTag");
+      const graphic = document.getElementById("arGraphicWrap");
+
+      if (model === "3x3") {
+        tag.textContent = "Kanopi 10' × 10' (3m × 3m) — Tapak Kompak";
+        graphic.innerHTML = `
+          <svg viewBox="0 0 300 240" fill="none" class="w-full h-auto">
+            <polygon points="150,30 50,110 250,110" fill="#ff7700" stroke="#111" stroke-width="4"/>
+            <polygon points="150,30 150,110 250,110" fill="#d95800" stroke="#111" stroke-width="4"/>
+            <polygon points="150,30 150,110 50,110" fill="#ffa726" stroke="#111" stroke-width="4"/>
+            <path d="M50,110 Q100,125 150,110 Q200,125 250,110 L250,120 Q200,135 150,120 Q100,135 50,120 Z" fill="#fff" stroke="#111" stroke-width="2"/>
+            <line x1="60" y1="120" x2="60" y2="230" stroke="#333" stroke-width="6"/>
+            <line x1="240" y1="120" x2="240" y2="230" stroke="#333" stroke-width="6"/>
+            <ellipse cx="150" cy="225" rx="100" ry="10" fill="#000" fill-opacity="0.3"/>
+          </svg>
+        `;
+      } else if (model === "3x6") {
+        tag.textContent = "Kanopi 10' × 20' (3m × 6m) — Format Memanjang";
+        graphic.innerHTML = `
+          <svg viewBox="0 0 300 240" fill="none" class="w-full h-auto">
+            <polygon points="150,35 10,105 290,105" fill="#ff7700" stroke="#111" stroke-width="4"/>
+            <polygon points="150,35 150,105 290,105" fill="#e65100" stroke="#111" stroke-width="4"/>
+            <polygon points="150,35 150,105 10,105" fill="#ffb74d" stroke="#111" stroke-width="4"/>
+            <!-- 6 legs for 3x6m -->
+            <line x1="25" y1="110" x2="25" y2="230" stroke="#333" stroke-width="6"/>
+            <line x1="150" y1="110" x2="150" y2="230" stroke="#333" stroke-width="6"/>
+            <line x1="275" y1="110" x2="275" y2="230" stroke="#333" stroke-width="6"/>
+            <ellipse cx="150" cy="225" rx="140" ry="12" fill="#000" fill-opacity="0.3"/>
+          </svg>
+        `;
+      } else if (model === "arabian") {
+        tag.textContent = "Arabian High-Peak 20' × 20' — Bumbung Tinggi Mewah";
+        graphic.innerHTML = `
+          <svg viewBox="0 0 300 240" fill="none" class="w-full h-auto">
+            <path d="M150,5 Q130,55 20,95 L280,95 Q170,55 150,5 Z" fill="#ffffff" stroke="#111" stroke-width="4"/>
+            <path d="M150,5 Q150,55 150,95 L280,95 Q170,55 150,5 Z" fill="#e0e0e0" stroke="#111" stroke-width="3"/>
+            <polygon points="150,5 20,95 280,95" fill="none" stroke="#ff7700" stroke-width="2"/>
+            <path d="M20,95 Q85,115 150,95 Q215,115 280,95 L280,115 Q215,135 150,115 Q85,135 20,115 Z" fill="#ff7700" stroke="#111" stroke-width="2"/>
+            <line x1="30" y1="115" x2="30" y2="230" stroke="#222" stroke-width="7"/>
+            <line x1="270" y1="115" x2="270" y2="230" stroke="#222" stroke-width="7"/>
+            <line x1="100" y1="115" x2="100" y2="215" stroke="#555" stroke-width="4"/>
+            <line x1="200" y1="115" x2="200" y2="215" stroke="#555" stroke-width="4"/>
+            <ellipse cx="150" cy="225" rx="130" ry="12" fill="#000" fill-opacity="0.3"/>
+          </svg>
+        `;
+      } else {
+        tag.textContent = "Kanopi Piramid 20' × 20' (6m × 6m) — Standard Acara";
+        graphic.innerHTML = `
+          <svg viewBox="0 0 300 240" fill="none" class="w-full h-auto">
+            <polygon points="150,15 20,95 280,95" fill="#ff7700" stroke="#111" stroke-width="4"/>
+            <polygon points="150,15 150,95 280,95" fill="#e65100" stroke="#111" stroke-width="4"/>
+            <polygon points="150,15 150,95 20,95" fill="#ff9800" stroke="#111" stroke-width="4"/>
+            <path d="M20,95 Q52,110 85,95 Q117,110 150,95 Q182,110 215,95 Q247,110 280,95 L280,110 Q247,125 215,110 Q182,125 150,110 Q117,125 85,110 Q52,125 20,110 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+            <line x1="30" y1="110" x2="30" y2="230" stroke="#333" stroke-width="7"/>
+            <line x1="270" y1="110" x2="270" y2="230" stroke="#333" stroke-width="7"/>
+            <line x1="90" y1="110" x2="90" y2="215" stroke="#555" stroke-width="5"/>
+            <line x1="210" y1="110" x2="210" y2="215" stroke="#555" stroke-width="5"/>
+            <ellipse cx="150" cy="225" rx="130" ry="12" fill="#000000" fill-opacity="0.25"/>
+          </svg>
+        `;
+      }
+    }
+
+    function updateARTransform() {
+      arScale = parseFloat(document.getElementById("arScaleSlider").value);
+      arRotate = parseInt(document.getElementById("arRotateSlider").value);
+      applyARStyle();
+    }
+
+    function applyARStyle() {
+      const obj = document.getElementById("arCanopyObject");
+      obj.style.transform = `translate(${arPos.x}px, ${arPos.y}px) scale(${arScale}) rotate(${arRotate}deg)`;
+    }
+
+    // AR Object Drag and Drop (Mouse & Touch)
+    const arObj = document.getElementById("arCanopyObject");
+
+    function onPointerDown(e) {
+      isDraggingAR = true;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      dragStartPos = { x: clientX - arPos.x, y: clientY - arPos.y };
+    }
+
+    function onPointerMove(e) {
+      if (!isDraggingAR) return;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      arPos.x = clientX - dragStartPos.x;
+      arPos.y = clientY - dragStartPos.y;
+      applyARStyle();
+    }
+
+    function onPointerUp() {
+      isDraggingAR = false;
+    }
+
+    arObj.addEventListener("mousedown", onPointerDown);
+    window.addEventListener("mousemove", onPointerMove);
+    window.addEventListener("mouseup", onPointerUp);
+
+    arObj.addEventListener("touchstart", onPointerDown, { passive: true });
+    window.addEventListener("touchmove", onPointerMove, { passive: true });
+    window.addEventListener("touchend", onPointerUp);
+
+    function addCurrentARToCart() {
+      const model = document.getElementById("arModelSelector").value;
+      let targetId = 3; // default 6x6
+      if (model === "3x3") targetId = 1;
+      if (model === "3x6") targetId = 2;
+      if (model === "arabian") targetId = 4;
+
+      addItemToCart(targetId, "rent", 1);
+      closeARModal();
+      toggleCartDrawer(true);
+    }
+
+    // Initialize App
+    window.onload = function() {
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      
+      // Set min date for date picker to today
+      const today = new Date().toISOString().split("T")[0];
+      const dateEl = document.getElementById("custDate");
+      if (dateEl) dateEl.min = today;
+
+      renderCatalog();
+      updateCartDisplay();
+    };
+  </script>
+
 </body>
 </html>
