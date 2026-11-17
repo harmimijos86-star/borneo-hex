@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#13294B">
+  <title>Admin · BORNEO HEX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    .admin { padding: 28px 0 60px; }
+    .admin h1 { font-size: 1.6rem; }
+    .admin .warn { background: #FFF6E0; border: 1.5px solid #F2D58A; border-radius: 12px; padding: 12px 14px; margin: 14px 0 22px; font-size: .9rem; }
+    .box { background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 16px; }
+    .box h2 { font-size: 1.1rem; margin-bottom: 4px; }
+    .box > p { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
+    .tpl { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; background: var(--cream); }
+    .tpl__head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .tpl__head b { color: var(--navy); }
+    .tpl pre { margin: 0; white-space: pre-wrap; font: 500 .86rem/1.5 inherit; color: var(--ink); font-family: inherit; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid #F0EBDF; vertical-align: top; }
+    th { color: var(--muted); font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+    td code { font-size: .8rem; color: var(--orange-2); }
+    .tag { display: inline-block; font-size: .72rem; font-weight: 800; padding: 2px 8px; border-radius: 99px; }
+    .tag--on { background: #E3F5EA; color: #176C3A; }
+    .tag--off { background: #F1EDE3; color: var(--muted); }
+    .tag--sewa { background: var(--navy); color: #fff; }
+    .tag--jual { background: var(--orange); color: #fff; }
+    .scroll { overflow-x: auto; }
+    @media (max-width: 640px) { body { padding-bottom: 0; } .hide-m { display: none; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header__in">
+      <a href="./" class="brand">
+        <span class="brand__mark" aria-hidden="true">BH</span>
+        <span class="brand__text"><strong>BORNEO HEX</strong><small>Admin dalaman</small></span>
+      </a>
+      <a class="btn btn--outline btn--sm" href="./">Lihat laman pelanggan</a>
+    </div>
+  </header>
+
+  <main class="admin">
+    <div class="wrap">
+      <h1>Alat dalaman</h1>
+      <p class="warn"><b>Nota:</b> halaman ini tidak dipautkan dari laman pelanggan, tapi sesiapa yang tahu alamat <code>/admin.html</code> boleh membukanya. Jangan letak maklumat sulit di sini. Log masuk sebenar akan ditambah semasa sambung ke Google Sheets.</p>
+
+      <section class="box">
+        <h2>Senarai harga</h2>
+        <p>Dijana terus dari <code>assets/js/data.js</code> — sentiasa sama dengan harga di laman pelanggan.</p>
+        <button class="btn btn--navy btn--sm" type="button" id="copyPrices">Salin senarai harga</button>
+      </section>
+
+      <section class="box">
+        <h2>Jawapan pantas WhatsApp</h2>
+        <p>Tekan "Salin" dan tampal dalam WhatsApp Business.</p>
+        <div id="templates"></div>
+      </section>
+
+      <section class="box">
+        <h2>Produk &amp; fail gambar</h2>
+        <p>Letak foto sebenar dalam folder <code>images/</code> dengan nama fail di bawah, kemudian isi medan <code>gambar</code> dalam <code>data.js</code>. Item "Tersembunyi" tidak dipaparkan kepada pelanggan.</p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Item</th><th>Jenis</th><th>Harga</th><th class="hide-m">Nama fail cadangan</th><th>Status</th></tr></thead>
+            <tbody id="productRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script>
+  (function () {
+    const { tetapan: T, produk } = window.BH;
+    const $ = s => document.querySelector(s);
+    const rm = n => "RM" + Number(n).toLocaleString("en-MY", { minimumFractionDigits: n % 1 ? 2 : 0 });
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const aktif = produk.filter(p => p.aktif !== false);
+
+    let tt;
+    function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 2000); }
+    async function copy(text, msg) {
+      try { await navigator.clipboard.writeText(text); }
+      catch (e) {
+        const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); ta.remove();
+      }
+      toast(msg);
+    }
+    const harga = p => p.harga === null ? "Tanya harga" : `${rm(p.harga)} ${p.unit}`;
+
+    function senaraiHarga() {
+      const out = [`${T.namaPerniagaan} — SENARAI HARGA`, ""];
+      const sewa = aktif.filter(p => p.mod === "sewa");
+      const jual = aktif.filter(p => p.mod === "jual");
+      out.push(`*SEWA* (sehingga ${T.tempohSewaAsas} hari)`, ...sewa.map(p => `• ${p.nama} — ${harga(p)}`), "");
+      out.push("*BELI* (unit baharu)", ...jual.map(p => `• ${p.nama} — ${harga(p)}`), "");
+      out.push("Hantar & pasang termasuk. Harga muktamad disahkan selepas survey tapak.", `WhatsApp: ${T.whatsappPaparan}`);
+      return out.join("\n");
+    }
+
+    const templates = [
+      { t: "Sapaan pertama", x: `Hi, terima kasih kerana menghubungi ${T.namaPerniagaan}! 😊\n\nKami sediakan SEWA dan JUALAN kanopi di Bintulu & seluruh Sarawak.\n\nBoleh kongsikan:\n1. Nak sewa atau beli?\n2. Tarikh majlis\n3. Lokasi\n4. Anggaran bilangan tetamu\n\nKami akan semak ketersediaan dan sahkan harga.` },
+      { t: "Pautan katalog", x: `Boleh lihat semua item & harga di laman kami, tambah ke senarai dan tekan "Hantar ke WhatsApp":\nhttps://borneo-hex.web.app\n\nSenarai anda terus sampai kepada kami 👍` },
+      { t: "Survey tapak", x: `Untuk cadangan bilangan kanopi yang tepat, kami akan buat survey tapak dahulu.\n\nBoleh kongsikan lokasi (pin Google Maps) dan masa yang sesuai untuk kami datang?` },
+      { t: "Sahkan tempahan", x: `Terima kasih! Tempahan anda telah kami catat:\n\nTarikh: [ ]\nLokasi: [ ]\nItem: [ ]\nJumlah: RM[ ]\n\nPenghantaran & pemasangan termasuk. Kami akan hubungi sehari sebelum pemasangan.` },
+      { t: "Tarikh penuh", x: `Mohon maaf, tarikh tersebut sudah penuh untuk kanopi 20×20. 🙏\n\nAdakah tarikh lain sesuai? Atau kami boleh semak alternatif untuk anda.` }
+    ];
+    $("#templates").innerHTML = templates.map((t, i) => `
+      <div class="tpl"><div class="tpl__head"><b>${esc(t.t)}</b>
+      <button class="btn btn--outline btn--sm" type="button" data-copy="${i}">Salin</button></div>
+      <pre>${esc(t.x)}</pre></div>`).join("");
+
+    $("#productRows").innerHTML = produk.map(p => `
+      <tr>
+        <td><b>${esc(p.nama)}</b></td>
+        <td><span class="tag tag--${p.mod}">${p.mod === "sewa" ? "Sewa" : "Jual"}</span></td>
+        <td>${esc(harga(p))}</td>
+        <td class="hide-m"><code>images/${esc(p.id)}.jpg</code>${p.gambar ? " ✓" : ""}</td>
+        <td><span class="tag ${p.aktif === false ? "tag--off" : "tag--on"}">${p.aktif === false ? "Tersembunyi" : "Aktif"}</span></td>
+      </tr>`).join("");
+
+    $("#copyPrices").addEventListener("click", () => copy(senaraiHarga(), "Senarai harga disalin"));
+    document.addEventListener("click", e => {
+      const b = e.target.closest("[data-copy]");
+      if (b) copy(templates[+b.dataset.copy].x, "Jawapan disalin");
+    });
+  })();
+  </script>
+</body>
+</html>
