@@ -210,7 +210,7 @@
     let tot = "";
     if (r.grp.sewa.length) tot += `<div><span>Anggaran sewa</span><b>${rm(r.sewa)}${r.sewaAsk ? "<small>+ item tanya harga</small>" : ""}</b></div>`;
     if (r.grp.jual.length) tot += `<div><span>Anggaran belian</span><b>${rm(r.jual)}${r.jualAsk ? "<small>+ item tanya harga</small>" : ""}</b></div>`;
-    tot += `<p class="muted">Hantar &amp; pasang termasuk. Harga muktamad disahkan selepas survey tapak.</p>`;
+    tot += `<p class="muted">Belum termasuk caj penghantaran (ikut jarak lokasi). Harga muktamad disahkan selepas survey tapak.</p>`;
     $("#totals").innerHTML = tot;
 
     $$("[data-sewa-only]").forEach(el => (el.hidden = !r.grp.sewa.length));

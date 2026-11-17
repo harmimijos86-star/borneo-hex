@@ -32,8 +32,16 @@ window.BH = {
       nama: "Kanopi 20 × 20 kaki",
       ringkas: "Saiz utama kenduri & majlis",
       harga: 350, unit: "/ 3 hari",
-      ciri: ["Keluasan 20' × 20' (± 6m × 6m)", "Muat anggaran 4–5 meja bulat", "Hantar & pasang termasuk"],
+      ciri: ["Keluasan 20' × 20' (± 6m × 6m)", "Muat anggaran 4–5 meja bulat", "Pasukan kami hantar & pasang"],
       ikon: "kanopi", gambar: null, aktif: true
+    },
+    {
+      id: "sewa-popup-10x10", mod: "sewa", kategori: "kanopi",
+      nama: "Pop-Up Tent 10 × 10 kaki",
+      ringkas: "Khemah lipat kompak, pasang pantas",
+      harga: 80, unit: "/ 3 hari",
+      ciri: ["Keluasan 10' × 10' (± 3m × 3m)", "Sesuai gerai, kaunter & pos kawalan", "Tambahan untuk ruang kecil"],
+      ikon: "kanopiKecil", gambar: null, aktif: true
     },
     {
       id: "sewa-arabian-20x20", mod: "sewa", kategori: "kanopi",

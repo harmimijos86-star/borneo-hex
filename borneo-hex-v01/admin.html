@@ -104,7 +104,7 @@
       const jual = aktif.filter(p => p.mod === "jual");
       out.push(`*SEWA* (sehingga ${T.tempohSewaAsas} hari)`, ...sewa.map(p => `• ${p.nama} — ${harga(p)}`), "");
       out.push("*BELI* (unit baharu)", ...jual.map(p => `• ${p.nama} — ${harga(p)}`), "");
-      out.push("Hantar & pasang termasuk. Harga muktamad disahkan selepas survey tapak.", `WhatsApp: ${T.whatsappPaparan}`);
+      out.push("Caj penghantaran ikut jarak lokasi. Harga muktamad disahkan selepas survey tapak.", `WhatsApp: ${T.whatsappPaparan}`);
       return out.join("\n");
     }
 
@@ -112,7 +112,7 @@
       { t: "Sapaan pertama", x: `Hi, terima kasih kerana menghubungi ${T.namaPerniagaan}! 😊\n\nKami sediakan SEWA dan JUALAN kanopi di Bintulu & seluruh Sarawak.\n\nBoleh kongsikan:\n1. Nak sewa atau beli?\n2. Tarikh majlis\n3. Lokasi\n4. Anggaran bilangan tetamu\n\nKami akan semak ketersediaan dan sahkan harga.` },
       { t: "Pautan katalog", x: `Boleh lihat semua item & harga di laman kami, tambah ke senarai dan tekan "Hantar ke WhatsApp":\nhttps://borneo-hex.web.app\n\nSenarai anda terus sampai kepada kami 👍` },
       { t: "Survey tapak", x: `Untuk cadangan bilangan kanopi yang tepat, kami akan buat survey tapak dahulu.\n\nBoleh kongsikan lokasi (pin Google Maps) dan masa yang sesuai untuk kami datang?` },
-      { t: "Sahkan tempahan", x: `Terima kasih! Tempahan anda telah kami catat:\n\nTarikh: [ ]\nLokasi: [ ]\nItem: [ ]\nJumlah: RM[ ]\n\nPenghantaran & pemasangan termasuk. Kami akan hubungi sehari sebelum pemasangan.` },
+      { t: "Sahkan tempahan", x: `Terima kasih! Tempahan anda telah kami catat:\n\nTarikh: [ ]\nLokasi: [ ]\nItem: [ ]\nCaj penghantaran: RM[ ]\nJumlah: RM[ ]\n\nKami akan hubungi sehari sebelum pemasangan.` },
       { t: "Tarikh penuh", x: `Mohon maaf, tarikh tersebut sudah penuh untuk kanopi 20×20. 🙏\n\nAdakah tarikh lain sesuai? Atau kami boleh semak alternatif untuk anda.` }
     ];
     $("#templates").innerHTML = templates.map((t, i) => `
