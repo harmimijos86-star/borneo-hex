@@ -4,6 +4,16 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "README.md", "firestore.rules", "**/*.log"],
     "headers": [
       {
+        "source": "**",
+        "headers": [
+          {"key": "X-Content-Type-Options", "value": "nosniff"},
+          {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
+          {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"},
+          {"key": "X-Frame-Options", "value": "DENY"},
+          {"key": "Content-Security-Policy-Report-Only", "value": "default-src 'self'; script-src 'self' 'sha256-DddhteQ/TPEH2jCT2UYTQGjnZOBihQTCHCxQHyXfSNE='; style-src 'self' https://fonts.googleapis.com 'sha256-M9mgIO7JLb3mETaD5VcjNQxZOoRyQ0HbvlGpoSTzyFs='; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"}
+        ]
+      },
+      {
         "source": "**/*.@(js|css)",
         "headers": [{"key": "Cache-Control", "value": "public,max-age=3600"}]
       }
